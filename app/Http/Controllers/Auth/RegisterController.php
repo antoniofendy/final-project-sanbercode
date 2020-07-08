@@ -9,6 +9,11 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+use RealRashid\SweetAlert\Facades\Alert;
+
+
+use \App\Profile;
+
 class RegisterController extends Controller
 {
     /*
@@ -64,10 +69,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        // Profile::create([
+
+        //     'telepon' => $data['telepon'],
+        //     'alamat' => $data['alamat'],
+        //     'user_id' => 
+
+        // ]);
+        Alert::success('Registrasi', 'Berhasil Register');
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        
+
     }
 }

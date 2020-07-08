@@ -10,7 +10,12 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-
+                        <?php 
+                            date_default_timezone_set('Asia/Jakarta');
+                            $time = date('Y-m-d H:i:s');
+                        ?>
+                        <input type="hidden" name="created_at" value="{{$time}}">
+                        <input type="hidden" name="updated_at" value="{{$time}}">
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
@@ -59,6 +64,24 @@
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Phone</label>
+                            
+                            <div class="col-md-6">
+                                <input type="number" class="form-control" name="telepon" required>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Address</label>
+                            
+                            <div class="col-md-6">
+                                <textarea name="alamat" class="form-control" cols="30" rows="5" required></textarea>
+                            </div>
+
                         </div>
 
                         <div class="form-group row mb-0">

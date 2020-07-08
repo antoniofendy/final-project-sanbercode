@@ -18,7 +18,8 @@ class CreatePertanyaanTable extends Migration
             $table->bigIncrements('id');
             $table->string('judul');
             $table->longText('isi');
-            $table->unsignedBigInteger('jawaban_id');
+            //jawaban_id disi ketika user sudah menentukan jawaban terbaik, makanya di nullable
+            $table->unsignedBigInteger('jawaban_id')->nullable();
             $table->timestamps();
         });
     }
