@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use \App\Pertanyaan;
+use \App\User;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $tanya = DB::table('pertanyaan')
+                    ->select('pertanyaan.*', 'users.name')
+                    ->join('users', 'pertanyaan.id', '=' ,'users.id')
+                    ->get();
+
+        return view('home', ['data_tanya' => $tanya]);
     }
 }

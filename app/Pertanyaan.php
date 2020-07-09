@@ -11,7 +11,7 @@ class Pertanyaan extends Model
     protected $guarded = [];
 
     public function tag(){
-        return $this->belongsToMany('\App\Tag', 'pertanyaan_tag', 'user_id', 'tag_id');
+        return $this->belongsToMany('\App\Tag', 'pertanyaan_tag', 'pertanyaan_id', 'tag_id');
     }
 
 }

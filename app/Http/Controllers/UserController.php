@@ -3,14 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 use \App\Pertanyaan;
 use \App\Tag;
+use \App\Vote_Pertanyaan;
+use \App\User;
+
+use Carbon\Carbon; 
+
 
 class UserController extends Controller
 {
     public function buat_pertanyaan()
     {
+    
+
+    public function buat_pertanyaan(){
+>>>>>>> 64c6bd020c62401922f038ce1ad4d55d2805ed4d
         return view('user.pertanyaan.buat');
     }
     public function buat_komen() // comment
