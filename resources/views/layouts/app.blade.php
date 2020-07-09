@@ -33,7 +33,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        @yield('navbar')
+                        <nav class="navbar navbar-light">
+                            <form class="form-inline">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                        </nav>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
