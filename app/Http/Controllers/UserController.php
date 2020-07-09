@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use \App\Pertanyaan;
 use \App\Tag;
+use \App\Vote_Pertanyaan;
+
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -38,6 +41,17 @@ class UserController extends Controller
         }
 
         return redirect('/home');
+
+    }
+
+    public function index(){
+
+        // $vote = DB::table('vote_pertanyaan')
+        //                 ->select(DB::raw('count(*), pertanyaan_id'))
+        //                 ;
+
+        $tanya = Pertanyaan::all();
+        dd($tanya);
 
     }
 
