@@ -79,6 +79,11 @@ class UserController extends Controller
                     
                     if($cek_vote->up_down == false){
                         $cek_vote->update(['up_down' => true]);
+
+                        //menambah reputasi si pembuat pertanyaan
+                        $get_user = User::find($get_user_id);
+                        $incr_point = $get_user->reputasi + 10;
+                        $get_user->update(['reputasi' => $incr_point]);
                     }
 
                 }
@@ -106,6 +111,11 @@ class UserController extends Controller
                     
                     if($cek_vote->up_down == true){
                         $cek_vote->update(['up_down' => false]);
+                        
+                        //mengurangi reputasi si pemberi vote
+                        $get_user = User::find($user_id);
+                        $incr_point = $get_user->reputasi - 1;
+                        $get_user->update(['reputasi' => $incr_point]);
                     }
 
                 }
