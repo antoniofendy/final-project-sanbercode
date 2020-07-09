@@ -44,6 +44,10 @@ Route::group(['middleware' => 'auth'], function () {
     //route untuk jawab pertanyaan
     Route::get('/jawab/{pertanyaan_id}', 'ForumController@jawab');
     Route::post('/jawab', 'ForumController@jawabcreate');
+
+    //route untuk komentar pertanyaan
+    Route::get('/komentar-tanya/{pertanyaan_id}', 'ForumController@komentar_pertanyaan');
+    Route::post('/komentar-tanya', 'ForumController@komentar_tanya_create');
 });
 
 Route::get('/user/komentar/comment', 'UserController@buat_komen');

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use \App\Pertanyaan;
 use \App\User;
 use \App\Jawaban;
+use \App\Komen_Tanya;
 
 class ForumController extends Controller
 {
@@ -38,6 +39,25 @@ class ForumController extends Controller
         $jawab = Jawaban::create($isi);
 
         return redirect('/pertanyaan/'. $isi['pertanyaan_id'] . '/detail');
+    }
+
+    public function komentar_pertanyaan($pertanyaan_id) {
+        $data_komen = Pertanyaan::find($pertanyaan_id);
+        $data_user = User::find($data_komen['user_id']);
+        return view('user.detail_forum.komentar', [
+            'data_komen' => $data_komen,
+            'data_user' => $data_user
+        ]);
+    }
+
+    public function komentar_tanya_create(Request $request){
+        $isi = $request->all();
+        unset($isi['_token']);
+         
+        $komen_tanya = Komen_Tanya::create($isi);
+
+        return redirect('/pertanyaan/'. $isi['pertanyaan_id'] . '/detail');
+        
     }
 
 }
