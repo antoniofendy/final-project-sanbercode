@@ -1,5 +1,14 @@
 @extends('layouts.app')
 
+@section('navbar')
+    <li class="nav-item mr-2">
+        <a href="{{url('/user/pertanyaan/buat')}}"><button class="btn btn-secondary">Berikan Pertanyaan</button></a>
+    </li>
+    <li class="nav-item">
+        <a href=""><button class="btn btn-secondary">Berikan Jawaban</button></a>
+    </li>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

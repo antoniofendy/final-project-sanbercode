@@ -33,12 +33,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item mr-2">
-                            <a href="{{url('/user/pertanyaan/buat')}}"><button class="btn btn-secondary">Berikan Pertanyaan</button></a>
-                        </li>
-                        <li class="nav-item">
-                            <a href=""><button class="btn btn-secondary">Berikan Jawaban</button></a>
-                        </li>
+                        @yield('navbar')
                     </ul>
 
                     <!-- Right Side Of Navbar -->
