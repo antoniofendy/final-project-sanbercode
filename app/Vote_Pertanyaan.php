@@ -8,4 +8,5 @@ class Vote_Pertanyaan extends Model
 {
     protected $table = "vote_pertanyaan";
     protected $guarded = [];
+    public $timestamps = false;
 }
