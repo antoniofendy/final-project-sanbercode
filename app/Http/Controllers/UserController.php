@@ -16,10 +16,7 @@ use Carbon\Carbon;
 
 class UserController extends Controller
 {
-    public function buat_pertanyaan()
-    {
     
-
     public function buat_pertanyaan(){
         return view('user.pertanyaan.buat');
     }
@@ -62,15 +59,16 @@ class UserController extends Controller
 
     public function vote_tanya($pertanyaan_id, $user_id, $vote){
 
-        if(Auth::check()){
+        $cek_vote = Vote_Pertanyaan::where(['pertanyaan_id' => $pertanyaan_id,'user_id'=>$user_id])->first();
+        $get_user_id = DB::table('pertanyaan')->where('id', $pertanyaan_id)->value('user_id');
 
-            $cek_vote = Vote_Pertanyaan::where(['pertanyaan_id' => $pertanyaan_id,'user_id'=>$user_id])->first();
-            $get_user_id = DB::table('pertanyaan')->where('id', $pertanyaan_id)->value('user_id');
+        if(Auth::check() && $get_user_id != $user_id){
+
             if($vote == 'up'){
 
                 $vote = true;
                 
-                if(empty($cek_vote) && $get_user_id != $user_id){
+                if(empty($cek_vote) ){
                     $current_date_time = Carbon::now()->toDateTimeString();
                     
                     $simpan = new Vote_Pertanyaan;
@@ -100,34 +98,38 @@ class UserController extends Controller
 
             }
             else{
-                $vote = false;
+                $reputasi_voter = User::find($user_id)->value('reputasi');
 
-                if(empty($cek_vote) && $get_user_id != $user_id){
-                    $current_date_time = Carbon::now()->toDateTimeString();
-                    
-                    $simpan = new Vote_Pertanyaan;
-                        $simpan->up_down = false;
-                        $simpan->user_id = $user_id;
-                        $simpan->pertanyaan_id = $pertanyaan_id;
-                    $simpan->save();
+                if($reputasi_voter >= 15){
+                    $vote = false;
 
-                    //mengurangi reputasi si pemberi vote
-                    $get_user = User::find($user_id);
-                    $incr_point = $get_user->reputasi - 1;
-                    $get_user->update(['reputasi' => $incr_point]);
-                    
-                }
-                else{
-                    
-                    if($cek_vote->up_down == true){
-                        $cek_vote->update(['up_down' => false]);
+                    if(empty($cek_vote)){
+                        $current_date_time = Carbon::now()->toDateTimeString();
                         
+                        $simpan = new Vote_Pertanyaan;
+                            $simpan->up_down = false;
+                            $simpan->user_id = $user_id;
+                            $simpan->pertanyaan_id = $pertanyaan_id;
+                        $simpan->save();
+
                         //mengurangi reputasi si pemberi vote
                         $get_user = User::find($user_id);
                         $incr_point = $get_user->reputasi - 1;
                         $get_user->update(['reputasi' => $incr_point]);
+                        
                     }
+                    else{
+                        
+                        if($cek_vote->up_down == true){
+                            $cek_vote->update(['up_down' => false]);
+                            
+                            //mengurangi reputasi si pemberi vote
+                            $get_user = User::find($user_id);
+                            $incr_point = $get_user->reputasi - 1;
+                            $get_user->update(['reputasi' => $incr_point]);
+                        }
 
+                    }
                 }
             }
 

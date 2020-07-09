@@ -3,6 +3,7 @@
     use Illuminate\Support\Facades\Auth;
     use \App\Pertanyaan_Tag; 
     use \App\Tag;
+    use \App\Vote_Pertanyaan;
     use Illuminate\Support\Facades\DB;
 
 ?>
@@ -11,14 +12,20 @@
 
 @section('navbar')
     <li class="nav-item mr-2">
-        <a href="{{url('/user/pertanyaan/buat')}}"><button class="btn btn-secondary">Berikan Pertanyaan</button></a>
+        
     </li>
     <li class="nav-item mr-2">
-        <a href=""><button class="btn btn-secondary">Berikan Jawaban</button></a>
+        
     </li>
     <li class="nav-item mr-2">
-        <a href='/user/komentar/comment'><button class="btn btn-secondary">Berikan Komentar</button></a>
+        
     </li>
+    <nav class="navbar navbar-light">
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
 @endsection
 
 
@@ -36,11 +43,12 @@
     <div class="col-md-2 mb-2">
         <div class="card main">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
+                <h5 class="card-title">Menu</h5>
+                <div class="btn-group-vertical">
+                    <a href="{{url('/user/pertanyaan/buat')}}" class="mb-2"><button class="btn btn-secondary">Berikan Pertanyaan</button></a>
+                    <a href="" class="mb-2"><button class="btn btn-secondary">Berikan Jawaban</button></a>
+                    <a href='/user/komentar/comment' class="mb-2"><button class="btn btn-secondary">Berikan Komentar</button></a>
+                </div>
             </div>
         </div>
     </div>
@@ -50,7 +58,7 @@
                 <div class="col-md-12">
                     <div class="card main">
                         <div class="card-header">Pertanyaan Terpopuler</div>
-        
+                        
                         <div class="card-body">
                             @if (session('status'))
                                 <div class="alert alert-success" role="alert">
@@ -76,7 +84,16 @@
                                                         </div>
                                                         <div class="col-12 mt-3">
                                                             <a href="#" class="btn btn-secondary">
-                                                                15
+                                                                <?php
+                                                                    
+                                                                    $up_vote = DB::table('vote_pertanyaan')->where(['pertanyaan_id'=>$item->id, 'up_down'=>true])
+                                                                            ->count();
+                                                                    $down_vote = DB::table('vote_pertanyaan')->where(['pertanyaan_id'=>$item->id, 'up_down'=>false])
+                                                                            ->count();
+                                                                            
+                                                                    echo $up_vote - $down_vote;
+
+                                                                ?>
                                                             </a>
                                                         </div>
                                                         <div class="col-12 mt-3">
@@ -123,11 +140,15 @@
         <div class="col-md-2 mb-2">
             <div class="card main">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+                    <?php $user = Auth::user(); ?>
+                    <h3 class="card-title">{{$user->name}}</h3>
+                    <hr>
+                    <h6 class="card-subtitle mb-2 text-muted"></h6>
+                    <p class="card-text">Point reputasimu saat ini : </p>
+                    <h2 class="text-center" style="color: darkslateblue"><b>{{$user->reputasi}}</b></h2>
+                    <hr>
+                    {{-- <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a> --}}
                 </div>
             </div>
         </div>
