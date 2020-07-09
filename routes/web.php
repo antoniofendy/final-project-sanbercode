@@ -31,13 +31,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/user/pertanyaan/buat', 'UserController@buat_pertanyaan');
     Route::post('/user/pertanyaan/buat', 'UserController@simpan_pertanyaan');
-<<<<<<< HEAD
-=======
 
     //route untuk vote tanya
     Route::get('user/vote-tanya/{pertanyaan_id}/{user_id}/{vote}', 'UserController@vote_tanya');
-
->>>>>>> 64c6bd020c62401922f038ce1ad4d55d2805ed4d
 });
 
 Route::get('/user/komentar/comment', 'UserController@buat_komen');

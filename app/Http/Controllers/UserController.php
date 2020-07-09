@@ -16,14 +16,11 @@ use Carbon\Carbon;
 
 class UserController extends Controller
 {
-<<<<<<< HEAD
     public function buat_pertanyaan()
     {
-=======
     
 
     public function buat_pertanyaan(){
->>>>>>> 64c6bd020c62401922f038ce1ad4d55d2805ed4d
         return view('user.pertanyaan.buat');
     }
     public function buat_komen() // comment
@@ -62,8 +59,6 @@ class UserController extends Controller
 
         return redirect('/home');
     }
-<<<<<<< HEAD
-=======
 
     public function vote_tanya($pertanyaan_id, $user_id, $vote){
 
@@ -144,5 +139,4 @@ class UserController extends Controller
         return redirect('/home');
     }   
 
->>>>>>> 64c6bd020c62401922f038ce1ad4d55d2805ed4d
 }
