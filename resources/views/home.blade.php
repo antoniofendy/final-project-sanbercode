@@ -1,3 +1,9 @@
+<?php 
+
+    use \App\Pertanyaan_Tag; 
+
+?>
+
 @extends('layouts.app')
 
 @section('navbar')
@@ -31,6 +37,15 @@
                         <div class="card-body">
                             <h5 class="card-title">{{$item->judul}}</h5>
                             <p p class="card-text">{!!$item->isi!!}</p>
+                            
+                            <?php
+                                
+                                $tag = Pertanyaan_Tag::where('pertanyaan_id', $item->id)
+                                                        ->get();
+                                dd($tag);
+
+                            ?>
+                            
                             <a href="#" class="btn btn-primary">Go somewhere</a>
                         </div>
                     </div>
