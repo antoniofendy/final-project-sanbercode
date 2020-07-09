@@ -4,8 +4,11 @@
     <li class="nav-item mr-2">
         <a href="{{url('/user/pertanyaan/buat')}}"><button class="btn btn-secondary">Berikan Pertanyaan</button></a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item mr-2">
         <a href=""><button class="btn btn-secondary">Berikan Jawaban</button></a>
+    </li>
+    <li class="nav-item mr-2">
+        <a href='/user/komentar/comment'><button class="btn btn-secondary">Berikan Komentar</button></a>
     </li>
 @endsection
 

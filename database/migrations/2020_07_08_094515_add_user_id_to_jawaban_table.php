@@ -14,13 +14,11 @@ class AddUserIdToJawabanTable extends Migration
     public function up()
     {
         Schema::table('jawaban', function (Blueprint $table) {
-            
+
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')
-            ->onDelete('cascade')
-            ->onUpdate('cascade')
-            ;
-
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 
@@ -32,10 +30,9 @@ class AddUserIdToJawabanTable extends Migration
     public function down()
     {
         Schema::table('jawaban', function (Blueprint $table) {
-            
+
             $table->dropForeign('user_id');
             $table->dropColumn('user_id');
-
         });
     }
 }
