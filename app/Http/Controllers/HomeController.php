@@ -31,9 +31,6 @@ class HomeController extends Controller
                     ->join('users', 'pertanyaan.id', '=' ,'users.id')
                     ->get();
 
-        $tag = DB::table('pertanyaan_tag')
-                    ->select('tag_');
-
         return view('home', ['data_tanya' => $tanya]);
     }
 }
