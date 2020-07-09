@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use \App\Pertanyaan;
 use \App\Tag;
 use \App\Vote_Pertanyaan;
+use \App\Vote_Jawaban;
 use \App\User;
 
 use Carbon\Carbon; 
@@ -139,6 +140,89 @@ class UserController extends Controller
 
         // }
         return redirect('/home');
-    }   
+    }
+    
+    public function vote_jawab($jawaban_id, $user_id, $vote){
+        $cek_vote = Vote_Jawaban::where(['jawaban_id' => $jawaban_id,'user_id'=>$user_id])->first();
+        $get_user_id = DB::table('jawaban')->where('id', $jawaban_id)->value('user_id');
+
+        if(Auth::check() && $get_user_id != $user_id){
+
+            if($vote == 'up'){
+
+                $vote = true;
+                
+                if(empty($cek_vote) ){
+                    $current_date_time = Carbon::now()->toDateTimeString();
+                    
+                    $simpan = new Vote_Jawaban;
+                        $simpan->up_down = true;
+                        $simpan->user_id = $user_id;
+                        $simpan->jawaban_id = $jawaban_id;
+                    $simpan->save();
+
+                    //menambah reputasi si pembuat jawaban
+                    $get_user = User::find($get_user_id);
+                    $incr_point = $get_user->reputasi + 10;
+                    $get_user->update(['reputasi' => $incr_point]);
+                    
+                }
+                else{
+                    
+                    if($cek_vote->up_down == false){
+                        $cek_vote->update(['up_down' => true]);
+
+                        //menambah reputasi si pembuat jawaban
+                        $get_user = User::find($get_user_id);
+                        $incr_point = $get_user->reputasi + 10;
+                        $get_user->update(['reputasi' => $incr_point]);
+                    }
+
+                }
+
+            }
+            else{
+                $reputasi_voter = User::find($user_id)->value('reputasi');
+
+                if($reputasi_voter >= 15){
+                    $vote = false;
+
+                    if(empty($cek_vote)){
+                        $current_date_time = Carbon::now()->toDateTimeString();
+                        
+                        $simpan = new Vote_Jawaban;
+                            $simpan->up_down = false;
+                            $simpan->user_id = $user_id;
+                            $simpan->jawaban_id = $jawaban_id;
+                        $simpan->save();
+
+                        //mengurangi reputasi si pemberi vote
+                        $get_user = User::find($user_id);
+                        $incr_point = $get_user->reputasi - 1;
+                        $get_user->update(['reputasi' => $incr_point]);
+                        
+                    }
+                    else{
+                        
+                        if($cek_vote->up_down == true){
+                            $cek_vote->update(['up_down' => false]);
+                            
+                            //mengurangi reputasi si pemberi vote
+                            $get_user = User::find($user_id);
+                            $incr_point = $get_user->reputasi - 1;
+                            $get_user->update(['reputasi' => $incr_point]);
+                        }
+
+                    }
+                }
+            }
+
+
+        }
+        // else{
+
+        // }
+        return redirect('/home');
+    }
 
 }

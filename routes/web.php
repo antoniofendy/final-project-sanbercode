@@ -35,8 +35,15 @@ Route::group(['middleware' => 'auth'], function () {
     //route untuk vote tanya
     Route::get('user/vote-tanya/{pertanyaan_id}/{user_id}/{vote}', 'UserController@vote_tanya');
 
+    //route untuk vote jawab
+    Route::get('user/vote-jawab/{jawaban_id}/{user_id}/{vote}', 'UserController@vote_jawab');
+
     //route untuk detail
     Route::get('pertanyaan/{pertanyaan_id}/detail', 'ForumController@index');
+
+    //route untuk jawab pertanyaan
+    Route::get('/jawab/{pertanyaan_id}', 'ForumController@jawab');
+    Route::post('/jawab', 'ForumController@jawabcreate');
 });
 
 Route::get('/user/komentar/comment', 'UserController@buat_komen');
