@@ -224,13 +224,16 @@
                                     <a href="{{url('/komentar-tanya/'. $item->id)}}" class="btn btn-success mt-3 mr-2" style="float: right"><i class="fa fa-comment"></i> Komentar</a>
                                     @if (Auth::id() == $data_tanya->user_id)
                                         @if (empty($data_tanya->jawaban_id))
-                                            <a href="{{url('/komentar-tanya/'. $item->id)}}" class="btn btn-success mt-3 mr-2" style="float: right"><i class="fa fa-star"></i> Jawaban Tepat</a>
+                                            <a href="{{url('/jawaban-tepat/'. $item->id)}}" class="btn btn-success mt-3 mr-2" style="float: right"><i class="fa fa-star"></i> Jawaban Tepat</a>
                                         @else
                                             
-                                            if($data_tanya->jawaban_id == $item->id){
-                                                <a href="#" class="btn btn-success mt-3 mr-2 disabled" style="float: right"><i class="fa fa-check-square"></i>Jawaban Terverikasi</a>
-                                            }
-
+                                            @if ($data_tanya->jawaban_id == $item->id)
+                                                <a href="#" class="btn btn-primary mt-3 mr-2 disabled" style="float: right"><i class="fa fa-check-square"></i>  Jawaban Terverikasi</a>
+                                            @endif
+                                        @endif
+                                    @else
+                                        @if ($data_tanya->jawaban_id == $item->id)
+                                            <a href="#" class="btn btn-primary mt-3 mr-2 disabled" style="float: right"><i class="fa fa-check-square"></i>  Jawaban Terverikasi</a>
                                         @endif
                                     @endif
                                 </div>

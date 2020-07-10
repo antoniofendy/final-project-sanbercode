@@ -41,6 +41,22 @@ class ForumController extends Controller
         return redirect('/pertanyaan/'. $isi['pertanyaan_id'] . '/detail');
     }
 
+    public function jawab_tepat(Request $request){
+
+        $jawaban = Jawaban::find($request->jawaban_id);
+
+        //mengisi id jawaban tepat dari pertanyaan di tabel pertanyaan
+        $pertanyaan = Pertanyaan::find($jawaban->pertanyaan_id);
+        $pertanyaan->update(['jawaban_id' => $jawaban->id]);
+
+        //menambahkan point reputasi ke pembuar jawaban
+        $user = User::find($jawaban->user_id);
+        $user->increment('reputasi', 15);
+
+        return $this->index($pertanyaan->id); 
+
+    }
+
     public function komentar_pertanyaan($pertanyaan_id) {
         $data_tanya = Pertanyaan::find($pertanyaan_id);
         $data_user = User::find($data_tanya['user_id']);
