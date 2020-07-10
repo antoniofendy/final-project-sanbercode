@@ -77,11 +77,11 @@
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <a href="{{url('user/vote-tanya/' . $data_tanya->id . '/' . Auth::id() . '/up')}}" class="btn btn-secondary">
-                                                                <i class="fa fa-arrow-up"></i>
+                                                                <i class="fa fa-sort-asc"></i>
                                                             </a>
                                                         </div>
                                                         <div class="col-12 mt-3">
-                                                            <a href="#" class="btn btn-secondary">
+                                                            <a href="#" class="btn btn-secondary disabled">
                                                                 <?php
                                                                     
                                                                     $up_vote = DB::table('vote_pertanyaan')->where(['pertanyaan_id'=>$data_tanya->id, 'up_down'=>true])
@@ -96,7 +96,7 @@
                                                         </div>
                                                         <div class="col-12 mt-3">
                                                             <a href="{{url('user/vote-tanya/' . $data_tanya->id . '/' . Auth::id() . '/down')}}" class="btn btn-secondary">
-                                                                <i class="fa fa-arrow-down"></i>
+                                                                <i class="fa fa-sort-desc"></i>
                                                             </a>
                                                         </div>
                                                     </div>
@@ -190,11 +190,11 @@
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <a href="{{url('user/vote-jawab/' . $item->id . '/' . Auth::id() . '/up')}}" class="btn btn-secondary">
-                                                                <i class="fa fa-arrow-up"></i>
+                                                                <i class="fa fa-sort-asc"></i>
                                                             </a>
                                                         </div>
                                                         <div class="col-12 mt-3">
-                                                            <a href="#" class="btn btn-secondary">
+                                                            <a href="#" class="btn btn-secondary disabled">
                                                                 <?php
                                                                     
                                                                     $up_vote = DB::table('vote_jawaban')->where(['jawaban_id'=>$item->id, 'up_down'=>true])
@@ -208,7 +208,7 @@
                                                         </div>
                                                         <div class="col-12 mt-3">
                                                             <a href="{{url('user/vote-jawab/' . $item->id . '/' . Auth::id() . '/down')}}" class="btn btn-secondary">
-                                                                <i class="fa fa-arrow-down"></i>
+                                                                <i class="fa fa-sort-desc"></i>
                                                             </a>
                                                         </div>
                                                     </div>
@@ -222,6 +222,17 @@
                                     </div>
                                     
                                     <a href="{{url('/komentar-tanya/'. $item->id)}}" class="btn btn-success mt-3 mr-2" style="float: right"><i class="fa fa-comment"></i> Komentar</a>
+                                    @if (Auth::id() == $data_tanya->user_id)
+                                        @if (empty($data_tanya->jawaban_id))
+                                            <a href="{{url('/komentar-tanya/'. $item->id)}}" class="btn btn-success mt-3 mr-2" style="float: right"><i class="fa fa-star"></i> Jawaban Tepat</a>
+                                        @else
+                                            
+                                            if($data_tanya->jawaban_id == $item->id){
+                                                <a href="#" class="btn btn-success mt-3 mr-2 disabled" style="float: right"><i class="fa fa-check-square"></i>Jawaban Terverikasi</a>
+                                            }
+
+                                        @endif
+                                    @endif
                                 </div>
                             </div>
                                 

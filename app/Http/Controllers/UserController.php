@@ -227,8 +227,8 @@ class UserController extends Controller
 
     public function list_pertanyaan($user_id){
 
-        dd(Pertanyaan::find($user_id));
-
+        $data_tanya = Pertanyaan::where('user_id', $user_id)->get();
+        return view('user.pertanyaan.index', compact('data_tanya'));
     }
 
 }
