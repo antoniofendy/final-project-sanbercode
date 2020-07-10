@@ -42,10 +42,10 @@ class ForumController extends Controller
     }
 
     public function komentar_pertanyaan($pertanyaan_id) {
-        $data_komen = Pertanyaan::find($pertanyaan_id);
-        $data_user = User::find($data_komen['user_id']);
+        $data_tanya = Pertanyaan::find($pertanyaan_id);
+        $data_user = User::find($data_tanya['user_id']);
         return view('user.detail_forum.komentar', [
-            'data_komen' => $data_komen,
+            'data_tanya' => $data_tanya,
             'data_user' => $data_user
         ]);
     }

@@ -71,13 +71,13 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-10 col-sm-12">
-                                            <h5 class="card-title" style="font-weight: bold">{{$data_komen->judul}}</h5>
+                                            <h5 class="card-title" style="font-weight: bold">{{$data_tanya->judul}}</h5>
         
-                                            <p p class="card-text">{!!$data_komen->isi!!}</p>
+                                            <p p class="card-text">{!!$data_tanya->isi!!}</p>
                                             <div class="tag">
                                                 <?php
                                                 
-                                                    $tag = Pertanyaan_Tag::where('pertanyaan_id', $data_komen->id)
+                                                    $tag = Pertanyaan_Tag::where('pertanyaan_id', $data_tanya->id)
                                                                             ->get();
                                                 ?>
                                                 @foreach ($tag as $tag_id)
@@ -109,7 +109,7 @@
                             <input type="hidden" name="created_at" value="{{$current_date_time}}">
                             <input type="hidden" name="updated_at" value="{{$current_date_time}}">
                             <input type="hidden" name="user_id" value="{{Auth::id()}}">
-                            <input type="hidden" name="pertanyaan_id" value="{{$data_komen->id}}">
+                            <input type="hidden" name="pertanyaan_id" value="{{$data_tanya->id}}">
                             <div class="form-group">
                                 <label for="isi"><b>Isi Komentar</b></label>
                                 <textarea style="height: 200px" name="isi" class="form-control my-editor">{!! old('isi', $isi ?? '') !!}</textarea>

@@ -7,6 +7,7 @@
     use \App\Vote_Pertanyaan;
     use \App\Pertanyaan;
     use \App\Jawaban;
+    use \App\Komen_Tanya;
     use Illuminate\Support\Facades\DB;
 
 ?>
@@ -128,6 +129,40 @@
                                     <a href="{{url('/komentar-tanya/'. $data_tanya->id)}}" class="btn btn-success mt-3 mr-2" style="float: right"><i class="fa fa-comment"></i> Komentar</a>
                                 </div>
                             </div>
+
+                            {{-- Komentar Tanya --}}
+                            <?php
+
+                                $data_komen = Komen_Tanya::whereIn('pertanyaan_id', [$data_tanya->id])->get();
+                                // {{dd($data_komen);}}
+                            ?>
+
+                            @foreach ($data_komen as $item) 
+                                
+
+                                <div class="card mb-2 ml-5">
+                                    <div class="card-header bg-info">
+                                        Komentar Dari : {{$item->name}}
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="text-center">
+                                                <div class="card border-0">
+                                                    <div class="card-body">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-10 col-sm-12">
+                                                <p p class="card-text">{!!$item->isi!!}</p>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>  
+
+                           @endforeach 
+                           {{-- End Komentar Tanya --}}
+
 
                             <!-- Bagian Jawaban -->
                             <?php
