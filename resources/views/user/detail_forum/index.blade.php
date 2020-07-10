@@ -215,17 +215,30 @@
                                         </div>
                                         <div class="col-md-10 col-sm-12">
                                             <h5 class="card-title" style="font-weight: bold">{{$item->judul}}</h5>
-                                            <p p class="card-text">{!!$item->description!!}</p>  
-                                               
+                                            <span class="badge badge-pill badge-primary">
+                                                {{$item->created_at->diffForHumans()}}
+                                            </span>
+                                            <p class="card-text">{!!$item->description!!}</p>  
                                         </div>
 
                                     </div>
                                     <a href="{{url('/komen-jawab/'. $item->id)}}" class="btn btn-success mt-3 mr-2" style="float: right"><i class="fa fa-comment"></i> Komentar</a>
-
+                                    <a href="{{url('/komentar-tanya/'. $item->id)}}" class="btn btn-success mt-3 mr-2" style="float: right"><i class="fa fa-comment"></i> Komentar</a>
+                                    @if (Auth::id() == $data_tanya->user_id)
+                                        @if (empty($data_tanya->jawaban_id))
+                                            <a href="{{url('/jawaban-tepat/'. $item->id)}}" class="btn btn-success mt-3 mr-2" style="float: right"><i class="fa fa-star"></i> Jawaban Tepat</a>
+                                        @else
+                                            
+                                            @if ($data_tanya->jawaban_id == $item->id)
+                                                <a href="#" class="btn btn-primary mt-3 mr-2 disabled" style="float: right"><i class="fa fa-check-square"></i>  Jawaban Terverikasi</a>
+                                            @endif
+                                        @endif
+                                    @else
+                                        @if ($data_tanya->jawaban_id == $item->id)
+                                            <a href="#" class="btn btn-primary mt-3 mr-2 disabled" style="float: right"><i class="fa fa-check-square"></i>  Jawaban Terverikasi</a>
+                                        @endif
+                                    @endif
                                 </div>
-                                    
-                                    
-                                    
                             </div>
 
                             <?php
