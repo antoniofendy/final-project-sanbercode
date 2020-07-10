@@ -139,10 +139,13 @@
 
                             @foreach ($data_komen as $item) 
                                 
+                                <?php
+                                    $user = User::find($item->user_id);
+                                ?>
 
                                 <div class="card mb-2 ml-5">
                                     <div class="card-header bg-info">
-                                        Komentar Dari : {{$item->name}}
+                                        Komentar Dari : {{$user->name}}
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
