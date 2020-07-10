@@ -225,4 +225,10 @@ class UserController extends Controller
         return redirect('/home');
     }
 
+    public function list_pertanyaan($user_id){
+
+        dd(Pertanyaan::find($user_id));
+
+    }
+
 }

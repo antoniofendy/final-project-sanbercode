@@ -32,6 +32,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/user/pertanyaan/buat', 'UserController@buat_pertanyaan');
     Route::post('/user/pertanyaan/buat', 'UserController@simpan_pertanyaan');
 
+    //route untuk list pertanyaan user
+    Route::get('/pertanyaan/{user_id}', 'UserController@list_pertanyaan');
+
     //route untuk vote tanya
     Route::get('user/vote-tanya/{pertanyaan_id}/{user_id}/{vote}', 'UserController@vote_tanya');
 

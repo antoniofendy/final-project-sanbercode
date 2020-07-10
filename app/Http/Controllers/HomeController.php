@@ -26,10 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $tanya = DB::table('pertanyaan')
-                    ->select('pertanyaan.*', 'users.name')
-                    ->join('users', 'pertanyaan.id', '=' ,'users.id')
-                    ->get();
+        $tanya = Pertanyaan::all();
 
         return view('home', ['data_tanya' => $tanya]);
     }
