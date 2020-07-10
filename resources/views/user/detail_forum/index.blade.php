@@ -112,6 +112,7 @@
                                                 
                                                     $tag = Pertanyaan_Tag::where('pertanyaan_id', $data_tanya->id)
                                                                             ->get();
+                                                                            
                                                 ?>
                                                 @foreach ($tag as $tag_id)
                                                     <?php

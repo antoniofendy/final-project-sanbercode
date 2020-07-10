@@ -65,7 +65,7 @@
                                 </div>
                             @endif --}}
                             <div class="card mb-2">
-                                <div class="card-header bg-success">
+                                <div class="card-header bg-warning">
                                     Dari : {{$data_user->name}}
                                 </div>
                                 <div class="card-body">
@@ -79,14 +79,14 @@
                                                 
                                                     $tag = Pertanyaan_Tag::where('pertanyaan_id', $data_tanya->id)
                                                                             ->get();
+                                                                            
                                                 ?>
                                                 @foreach ($tag as $tag_id)
                                                     <?php
-                                                        $tag_name = DB::table('tag')
-                                                                ->select(DB::raw('nama_tag'))
-                                                                ->where('id', $tag_id->id)->get();
+                                                        $tag_name = Tag::find($tag_id->tag_id);
                                                     ?>
-                                                    <button type="button" class="btn btn-info">{{$tag_name[0]->nama_tag}}</button>
+                                                        <button type="button" class="btn btn-info">{{$tag_name->nama_tag}}</button>
+                                                    
                                                 @endforeach
                                             </div>
                                         </div>
