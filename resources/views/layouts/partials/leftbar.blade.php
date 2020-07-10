@@ -7,10 +7,11 @@
 <div class="card main">
     <div class="card-body">
         <h5 class="card-title">Menu</h5>
-        <div class="btn-group-vertical">
-            <a href="{{url('/user/pertanyaan/buat')}}" class="mb-2"><button class="btn btn-secondary">Berikan Pertanyaan</button></a>
-            <a href="" class="mb-2"><button class="btn btn-secondary">Berikan Jawaban</button></a>
-            <a href="{{url('/pertanyaan/'. Auth::id())}}" class="mb-2"><button class="btn btn-secondary">Pertanyaan Anda</button></a>
+        <div class="list-group">
+            <a href="{{url('/')}}" class="list-group-item list-group-item-action">Home</a>
+            <a href="{{url('/user/pertanyaan/buat')}}" class="list-group-item list-group-item-action">Buat Pertanyaan</a>
+            <a href="{{url('/pertanyaan/'. Auth::id())}}" class="list-group-item list-group-item-action">Pertanyaan Anda</a>
+            <a href="#" class="list-group-item list-group-item-action">Profil</a>
         </div>
     </div>
 </div>

@@ -123,7 +123,6 @@
                                                         $tag_name = Tag::find($tag_id->tag_id);
                                                     ?>
                                                         <button type="button" class="btn btn-info">{{$tag_name->nama_tag}}</button>
-                                                    
                                                 @endforeach
                                             </div>
                                         </div>
@@ -225,37 +224,34 @@
 
                                 </div>
                                     
-                                    {{-- komentar jawaban disini --}}
-                                    <?php  
-                                        $data_id_jawaban = Jawaban::select('id')->get();
-                                        $data_komen_jawab = Komen_Jawab::select('*')->get(); 
+                                    
+                                    
+                            </div>
+
+                            <?php
+                                $komen_jawab = Jawaban::find($item->id)->komen_jawab;
+                            ?>
+
+                                @foreach ($komen_jawab as $komen_jwb)
+
+                                    <?php
+                                        $user = User::find($item->user_id);
                                     ?>
                                     
-
-                                    @for($i = 0 ; $i <= $data_id_jawaban->count()-1; $i++) 
-                                    
-                                        <?php
-                                            $user = User::find($item->user_id);
-                                        ?>
-
-                                        @if($item->id == $data_komen_jawab[$i]['jawaban_id'])
-                                            <div class="card mb-2 ml-5">
-                                                <div class="card-header bg-info">
-                                                    Komentar Dari : {{$user->name}}
-                                                </div>
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-md-10 col-sm-12">
-                                                            <p p class="card-text">{!!$data_komen_jawab[$i]['isi']!!}</p>
-                                                        </div>
-                                                    </div>
+                                    <div class="card mb-2 ml-5">
+                                        <div class="card-header bg-success">
+                                            Komentar Dari : {{$user->name}}
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-10 col-sm-12">
+                                                    <p p class="card-text">{!!$komen_jwb->isi!!}</p>
                                                 </div>
                                             </div>
-                                        @endif
+                                        </div>
+                                    </div>
 
-                                    @endfor
-                                    
-                                </div>
+                                @endforeach
                                 
                             @endforeach
                            
@@ -265,7 +261,6 @@
                     </div>
                 </div>
             </div>      
-        </div>
 
         <div class="col-md-2 mb-2">
             <div class="card main">
@@ -278,3 +273,5 @@
 </div>
 
 @endsection
+
+

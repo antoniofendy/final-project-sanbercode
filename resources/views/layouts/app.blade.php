@@ -18,10 +18,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style>
+        body{
+            background: url('img/oriental-tiles.png');
+        }
+    </style>
+
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-warning shadow-sm">
+    <div id="app" style="background-image: url(img\oriental-tiles.png)">
+        <nav class="navbar navbar-expand-md navbar-light bg-warning shadow-sm sticky-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Stack Over Wow
