@@ -9,6 +9,7 @@
     use \App\Jawaban;
     use \App\Komen_Tanya;
     use Illuminate\Support\Facades\DB;
+    use Carbon\Carbon;
 
 ?>
 
@@ -67,7 +68,7 @@
                             @endif --}}
                             <div class="card mb-2">
                                 <div class="card-header bg-warning">
-                                    Dari : {{$data_user->name}}
+                                    Pertanyaan dari : {{$data_user->name}}
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
@@ -105,7 +106,9 @@
                                         </div>
                                         <div class="col-md-10 col-sm-12">
                                             <h5 class="card-title" style="font-weight: bold">{{$data_tanya->judul}}</h5>
-        
+                                            <span class="badge badge-pill badge-primary">
+                                                {{$data_tanya->created_at->diffForHumans()}}
+                                            </span>
                                             <p p class="card-text">{!!$data_tanya->isi!!}</p>
                                             <div class="tag">
                                                 <?php
@@ -145,7 +148,7 @@
 
                                 <div class="card mb-2 ml-5">
                                     <div class="card-header bg-success">
-                                        Komentar Dari : {{$user->name}}
+                                        Komentar dari : {{$user->name}}
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -156,6 +159,9 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-10 col-sm-12">
+                                                <span class="badge badge-pill badge-primary">
+                                                    {{$item->created_at->diffForHumans()}}
+                                                </span>
                                                 <p p class="card-text">{!!$item->isi!!}</p>
                                             </div>
                                         </div>
@@ -180,7 +186,7 @@
 
                             <div class="card mb-2">
                                 <div class="card-header bg-info">
-                                    Dari : {{$user->name}}
+                                    Jawaban dari : {{$user->name}}
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
@@ -217,6 +223,9 @@
                                         </div>
                                         <div class="col-md-10 col-sm-12">
                                             <h5 class="card-title" style="font-weight: bold">{{$item->judul}}</h5>
+                                            <span class="badge badge-pill badge-primary">
+                                                {{$item->created_at->diffForHumans()}}
+                                            </span>
                                             <p p class="card-text">{!!$item->description!!}</p>
                                         </div>
                                     </div>

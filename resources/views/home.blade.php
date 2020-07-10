@@ -7,6 +7,7 @@
     use \App\Pertanyaan;
     use Illuminate\Support\Facades\DB;
     use \App\User;
+    use Carbon\Carbon;
 ?>
 
 @extends('layouts.app')
@@ -96,7 +97,10 @@
                                     
                                     <div class="col-md-10 col-sm-12">
                                         <h5 class="card-title" style="font-weight: bold">{{$item->judul}}</h5>
-    
+                                        <span class="badge badge-pill badge-primary">
+                                            {{$item->created_at->diffForHumans()}}
+                                        </span>
+                                        <hr>
                                         <p p class="card-text">{!!$item->isi!!}</p>
                                         <div class="tag">
                                             <?php

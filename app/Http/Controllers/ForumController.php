@@ -8,6 +8,8 @@ use \App\User;
 use \App\Jawaban;
 use \App\Komen_Tanya;
 
+use RealRashid\SweetAlert\Facades\Alert;
+
 class ForumController extends Controller
 {
     
@@ -38,6 +40,9 @@ class ForumController extends Controller
         unset($isi['_token']);
         $jawab = Jawaban::create($isi);
 
+        Alert::info('Berhasil', 'Jawaban anda telah terkirim');
+
+
         return redirect('/pertanyaan/'. $isi['pertanyaan_id'] . '/detail');
     }
 
@@ -53,6 +58,7 @@ class ForumController extends Controller
         $user = User::find($jawaban->user_id);
         $user->increment('reputasi', 15);
 
+        Alert::info('Berhasil', 'Anda telah memilih jawaban terverifikasi');
         return $this->index($pertanyaan->id); 
 
     }

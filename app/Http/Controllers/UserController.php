@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 use \App\Pertanyaan;
 use \App\Tag;
 use \App\Vote_Pertanyaan;
 use \App\Vote_Jawaban;
+use \App\Jawaban;
 use \App\User;
 
 use Carbon\Carbon; 
 
+include('ForumController.php');
 
 class UserController extends Controller
 {
@@ -54,6 +57,9 @@ class UserController extends Controller
             $tag = Tag::firstOrCreate($tag_in);
             $tanya->tag()->attach($tag->id);
         }
+
+        Alert::info('Berhasil', 'Pertanyaan berhasil dikirim');
+
 
         return redirect('/home');
     }
@@ -136,9 +142,9 @@ class UserController extends Controller
 
 
         }
-        // else{
-
-        // }
+        else{
+            Alert::error('Gagal', 'Tidak boleh vote pada pertanyaan sendiri');
+        }
         return redirect('/home');
     }
     
@@ -219,10 +225,11 @@ class UserController extends Controller
 
 
         }
-        // else{
-
-        // }
-        return redirect('/home');
+        else{
+            Alert::error('Gagal', 'Tidak boleh vote pada jawaban sendiri');
+        }
+        $jwb = Jawaban::find($jawaban_id);
+        return redirect('/pertanyaan/' . $jwb->pertanyaan_id . "/detail");
     }
 
     public function list_pertanyaan($user_id){
