@@ -103,14 +103,13 @@
                                                 
                                                 $tag = Pertanyaan_Tag::where('pertanyaan_id', $item->id)
                                                                         ->get();
+                                                                        
                                             ?>
-                                            
                                             @foreach ($tag as $tag_id)
                                                 <?php
-                                                    $tag_name = Tag::find($tag_id->tag_id)->value('nama_tag');
-                                                    
+                                                    $tag_name = Tag::find($tag_id->tag_id);
                                                 ?>
-                                                    <button type="button" class="btn btn-info">{{$tag_name}}</button>
+                                                    <button type="button" class="btn btn-info">{{$tag_name->nama_tag}}</button>
                                                 
                                             @endforeach
                                             
