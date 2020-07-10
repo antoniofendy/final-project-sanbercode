@@ -125,7 +125,7 @@
                                     </div>
                                     
                                     <a href="{{url('/jawab/'. $data_tanya->id)}}" class="btn btn-success mt-3 mr-2" style="float: right"><i class="fa fa-reply"></i> Jawab</a>
-                                    <a href="{{url('/komentar-tanya/'. $data_tanya->id)}}" class="btn btn-success mt-3 mr-2" style="float: right"><i class="fa fa-comment"></i> Komentar</a>
+                                    <a href="{{url('/komen_jawab/'. $data_tanya->id)}}" class="btn btn-success mt-3 mr-2" style="float: right"><i class="fa fa-comment"></i> Komentar</a>
                                 </div>
                             </div>
                             

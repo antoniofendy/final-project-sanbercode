@@ -104,7 +104,7 @@
                         Komentar Kamu
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{url('/komentar-tanya')}}">
+                        <form method="post" action="{{url('/komen-tanya')}}">
                             @csrf
                             <input type="hidden" name="created_at" value="{{$current_date_time}}">
                             <input type="hidden" name="updated_at" value="{{$current_date_time}}">
