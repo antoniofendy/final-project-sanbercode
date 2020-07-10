@@ -51,10 +51,11 @@
                         @foreach ($data_tanya as $item)
                         <div class="card mb-2">
                             <?php
-                                $nama = User::find($item->user_id)->value('name');
+                                $nama = User::find($item->user_id);
+                                $nama_user = $nama->name;
                             ?>
                             <div class="card-header bg-primary text-white">
-                                Dari : {{$nama}}
+                                Dari : {{$nama_user}}
                             </div>
                             
                             <div class="card-body bg-warning">

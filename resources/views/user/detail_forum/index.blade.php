@@ -144,7 +144,7 @@
                                 ?>
 
                                 <div class="card mb-2 ml-5">
-                                    <div class="card-header bg-info">
+                                    <div class="card-header bg-success">
                                         Komentar Dari : {{$user->name}}
                                     </div>
                                     <div class="card-body">

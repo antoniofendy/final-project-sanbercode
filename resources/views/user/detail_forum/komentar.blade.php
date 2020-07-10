@@ -65,7 +65,7 @@
                                 </div>
                             @endif --}}
                             <div class="card mb-2">
-                                <div class="card-header bg-warning">
+                                <div class="card-header bg-success">
                                     Dari : {{$data_user->name}}
                                 </div>
                                 <div class="card-body">

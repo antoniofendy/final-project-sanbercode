@@ -99,8 +99,8 @@ class UserController extends Controller
 
             }
             else{
-                $reputasi_voter = User::find($user_id)->value('reputasi');
-
+                $voter = User::find($user_id);
+                $reputasi_voter = $voter->reputasi;
                 if($reputasi_voter >= 15){
                     $vote = false;
 
@@ -182,8 +182,8 @@ class UserController extends Controller
 
             }
             else{
-                $reputasi_voter = User::find($user_id)->value('reputasi');
-
+                $voter = User::find($user_id);
+                $reputasi_voter = $voter->reputasi;
                 if($reputasi_voter >= 15){
                     $vote = false;
 
