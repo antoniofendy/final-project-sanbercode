@@ -231,13 +231,10 @@
                             <?php
                                 $komen_jawab = Jawaban::find($item->id)->komen_jawab;
                             ?>
-
                                 @foreach ($komen_jawab as $komen_jwb)
-
                                     <?php
                                         $user = User::find($item->user_id);
                                     ?>
-                                    
                                     <div class="card mb-2 ml-5">
                                         <div class="card-header bg-success">
                                             Komentar Dari : {{$user->name}}
@@ -245,6 +242,9 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-md-10 col-sm-12">
+                                                    <span class="badge badge-pill badge-primary">
+                                                        {{$item->created_at->diffForHumans()}}
+                                                    </span>
                                                     <p p class="card-text">{!!$komen_jwb->isi!!}</p>
                                                 </div>
                                             </div>
