@@ -7,7 +7,6 @@
     use \App\Pertanyaan;
     use Illuminate\Support\Facades\DB;
     use \App\User;
-    use Carbon\Carbon;
 ?>
 
 @extends('layouts.app')
@@ -41,7 +40,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card main">
-                    <div class="card-header">Pertanyaan Terpopuler</div>
+                    <div class="card-header">Pertanyaan Anda</div>
                     <div class="card-body">
                         {{-- @if (session('status'))
                             <div class="alert alert-success" role="alert">
@@ -100,7 +99,6 @@
                                         <span class="badge badge-pill badge-primary">
                                             {{$item->created_at->diffForHumans()}}
                                         </span>
-                                        <hr>
                                         <p p class="card-text">{!!$item->isi!!}</p>
                                         <div class="tag">
                                             <?php
