@@ -273,38 +273,46 @@ class UserController extends Controller
     //FUNCTION EDIT PERTANYAAN
     public function form_edit_pertanyaan($pertanyaan_id){
 
-        //mendapatkan data pertanyaan
-        $data_tanya = Pertanyaan::find($pertanyaan_id);
+        $user = Pertanyaan::where('id', $pertanyaan_id)->first();
+        $user_id = $user->user_id;
+        if(Auth::id() == $user_id){
 
-        //mendapatkan data tag
-        $tanya_tag = DB::table('pertanyaan_tag')
-                    ->select('pertanyaan_tag.*', 'tag.nama_tag')
-                    ->join('tag', 'pertanyaan_tag.tag_id', '=', 'tag.id')
-                    ->where('pertanyaan_id', $pertanyaan_id)
-                    ->get()
-                    ;
-        $data_tag = "";
-        $tanya_tag = end($tanya_tag);
-        foreach ($tanya_tag as $value) {
-            if($value != end($tanya_tag)){
-                $data_tag .= $value->nama_tag . ",";
+            //mendapatkan data pertanyaan
+            $data_tanya = Pertanyaan::find($pertanyaan_id);
+
+            //mendapatkan data tag
+            $tanya_tag = DB::table('pertanyaan_tag')
+                        ->select('pertanyaan_tag.*', 'tag.nama_tag')
+                        ->join('tag', 'pertanyaan_tag.tag_id', '=', 'tag.id')
+                        ->where('pertanyaan_id', $pertanyaan_id)
+                        ->get()
+                        ;
+            $data_tag = "";
+            $tanya_tag = end($tanya_tag);
+            foreach ($tanya_tag as $value) {
+                if($value != end($tanya_tag)){
+                    $data_tag .= $value->nama_tag . ",";
+                }
+                else{
+                    $data_tag .= $value->nama_tag;
+                }
             }
-            else{
-                $data_tag .= $value->nama_tag;
-            }
+
+            //mendapatkan data user
+            $user = User::find($data_tanya->user_id)->value('name');
+            
+            return view('user.pertanyaan.edit', 
+                [
+                    'data_tanya' => $data_tanya,
+                    'data_tag' => $data_tag,
+                    'data_user' => $user
+                ]
+            );
         }
-
-        //mendapatkan data user
-        $user = User::find($data_tanya->user_id)->value('name');
-        
-        return view('user.pertanyaan.edit', 
-            [
-                'data_tanya' => $data_tanya,
-                'data_tag' => $data_tag,
-                'data_user' => $user
-            ]
-        );
-        
+        else{
+            Alert::error('Gagal', 'Tidak boleh mengedit pertanyaan pengguna lain');
+        }
+        return redirect('/home');
     }
 
     public function store_edit_pertanyaan(Request $request){
