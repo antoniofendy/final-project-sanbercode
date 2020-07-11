@@ -222,6 +222,9 @@ class UserController extends Controller
 
                     }
                 }
+                else {
+                    Alert::error('Gagal', 'Minimal point reputasi vote down adalah 15');
+                }
             }
 
 
@@ -267,16 +270,23 @@ class UserController extends Controller
     //FUNCTION EDIT PERTANYAAN
     public function form_edit_pertanyaan($pertanyaan_id){
 
+        //mendapatkan data pertanyaan
         $data_tanya = Pertanyaan::find($pertanyaan_id);
+
+        //mendapatkan data tag
         $tanya_tag = DB::table('pertanyaan_tag')
                     ->select('pertanyaan_tag.*', 'tag.nama_tag')
                     ->join('tag', 'pertanyaan_tag.tag_id', '=', 'tag.id')
                     ->where('pertanyaan_id', $pertanyaan_id)
                     ->get()
                     ;
-        $user = Pertanyaan::where('id', $pertanyaan_id)->first();
         
+        $user = User::find($data_tanya->user_id)->value('name');
+        
+        return view('user.pertanyaan.edit', compact('data_tanya', 'tanya_tag', 'user'));
         
     }
+
+    //Bagian untuk CRUD JAWABAN - MAS SANI
 
 }

@@ -23,7 +23,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card main">
-                        <div class="card-header">Berikan Pertanyaan</div>
+                        <div class="card-header">Edit Pertanyaan</div>
                         
                         <div class="card-body">
                             {{-- @if (session('status'))
