@@ -66,6 +66,12 @@ Route::group(['middleware' => 'auth'], function () {
     //route untuk komentar jawaban
     Route::get('/komen-jawab/{pertanyaan_id}', 'ForumController@komen_jawab');
     Route::post('/komen-jawab', 'ForumController@komen_jawabcreate');
+
+    //route untuk update jawaban
+    Route::get('/edit-jawaban/{jawaban_id}', 'UserController@form_edit_jawaban');
+    Route::post('/edit-jawaban/', 'UserController@update_jawaban');
+
+    Route::get('/hapus-jawaban/{jawaban_id}', 'UserController@hapus_jawaban');
 });
 
 Route::get('/user/komentar/comment', 'UserController@buat_komen');

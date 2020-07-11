@@ -178,7 +178,9 @@
 
                             <div class="card mb-2">
                                 <div class="card-header bg-info">
-                                    Jawaban dari : {{$user->name}}
+                                    <p style="display: inline-block;" class="">Jawaban dari : {{$user->name}}</p>
+                                    <a href="{{url('/hapus-jawaban/'. $item->id)}}" style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-trash" aria-hidden="true"></i> Hapus</a>
+                                    <a href="{{url('/edit-jawaban/'. $item->id)}}" class="mr-3" style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
