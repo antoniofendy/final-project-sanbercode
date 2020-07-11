@@ -239,11 +239,20 @@ class UserController extends Controller
         return redirect('/pertanyaan/' . $jwb->pertanyaan_id . "/detail");
     }
 
+    //FUNCTION INDEX PERTANYAAN
     public function list_pertanyaan($user_id){
         $data_tanya = Pertanyaan::where('user_id', $user_id)->get();
         return view('user.pertanyaan.index', compact('data_tanya'));
     }
 
+    //FUNCTION INDEX JAWABAN
+    public function list_jawaban($user_id){
+
+        $data_jawab = Jawaban::where('user_id', $user_id)->get();
+        
+        return view('user.jawaban.index', compact('data_jawab'));
+
+    }
 
     //FUNCTION HAPUS PERTANYAAN
     public function hapus_pertanyaan($pertanyaan_id){
@@ -379,7 +388,7 @@ class UserController extends Controller
             Alert::error('Gagal', 'Tidak boleh update jawaban pengguna lain');
         }
 
-        return redirect('/pertanyaan/'.$request->id.'/detail');
+        return redirect('/home');
     }
 
     public function hapus_jawaban($jawaban_id){
@@ -402,7 +411,7 @@ class UserController extends Controller
             Alert::error('Gagal', 'Tidak boleh menghapus jawaban pengguna lain');
         }
 
-        return redirect('/pertanyaan/'.$data_jawab->pertanyaan_id.'/detail');
+        return redirect('/home');
     
     }
 }

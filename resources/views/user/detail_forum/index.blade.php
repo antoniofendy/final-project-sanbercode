@@ -67,6 +67,8 @@
                                     {{ session('status') }}
                                 </div>
                             @endif --}}
+
+                            <!-- BAGIAN PERTANYAAN -->
                             <div class="card mb-2">
                                 <div class="card-header bg-warning">
                                     Pertanyaan dari : {{$data_user->name}}
@@ -132,6 +134,7 @@
                                     <a href="{{url('/komen-tanya/'. $data_tanya->id)}}" class="btn btn-success mt-3 mr-2" style="float: right"><i class="fa fa-comment"></i> Komentar</a>
                                 </div>
                             </div>
+                            <!-- Bagian Akhir pertanyaan -->
 
                             <!-- Bagian komen pertanyaan -->
                             <?php

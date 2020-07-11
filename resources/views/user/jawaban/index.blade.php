@@ -30,7 +30,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card main">
-                    <div class="card-header">Pertanyaan Anda</div>
+                    <div class="card-header">Jawaban Anda</div>
                     <div class="card-body">
                         {{-- @if (session('status'))
                             <div class="alert alert-success" role="alert">
@@ -38,12 +38,12 @@
                             </div>
                         @endif --}}
                         
-                        @foreach ($data_tanya as $item)
+                        @foreach ($data_jawab as $item)
                         <div class="card mb-2">
-                            <div class="card-header bg-warning">
-                                <a href="{{url('/pertanyaan/'. $item->id. '/hapus')}}" style="float: right; display:inline;"><i class="fa fa-trash" aria-hidden="true"></i><b> Hapus</b></a>
-                                <a href="{{url('/pertanyaan/'. $item->id. '/edit')}}" class="mr-3" style="float: right; display:inline;"><i class="fa fa-pencil" aria-hidden="true"></i><b> Edit</b></a>
-                                <a href="{{url('/pertanyaan/'. $item->id. '/detail')}}" class="mr-3" style="float: right; display:inline;"><i class="fa fa-eye" aria-hidden="true"></i><b> Detail</b></a>
+                            <div class="card-header bg-info">
+                                <a href="{{url('/hapus-jawaban/'. $item->id)}}" style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-trash" aria-hidden="true"></i> Hapus</a>
+                                <a href="{{url('/edit-jawaban/'. $item->id)}}" class="mr-3" style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                                <a href="{{url('/pertanyaan/'. $item->pertanyaan_id. '/detail')}}" class="mr-3" style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-eye" aria-hidden="true"></i> Detail</a>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -52,59 +52,40 @@
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <a href="{{url('user/vote-tanya/' . $item->id . '/' . Auth::id() . '/up')}}" class="btn btn-secondary">
-                                                            <i class="fa fa-arrow-up"></i>
+                                                        <a href="{{url('user/vote-jawab/' . $item->id . '/' . Auth::id() . '/up')}}" class="btn btn-secondary">
+                                                            <i class="fa fa-sort-asc"></i>
                                                         </a>
                                                     </div>
                                                     <div class="col-12 mt-3">
-                                                        <a href="#" class="btn btn-secondary">
+                                                        <a href="#" class="btn btn-secondary disabled">
                                                             <?php
                                                                 
-                                                                $up_vote = DB::table('vote_pertanyaan')->where(['pertanyaan_id'=>$item->id, 'up_down'=>true])
+                                                                $up_vote = DB::table('vote_jawaban')->where(['jawaban_id'=>$item->id, 'up_down'=>true])
                                                                         ->count();
-                                                                $down_vote = DB::table('vote_pertanyaan')->where(['pertanyaan_id'=>$item->id, 'up_down'=>false])
+                                                                $down_vote = DB::table('vote_jawaban')->where(['jawaban_id'=>$item->id, 'up_down'=>false])
                                                                         ->count();
                                                                         
                                                                 echo $up_vote - $down_vote;
-
                                                             ?>
                                                         </a>
                                                     </div>
-                                                    
                                                     <div class="col-12 mt-3">
-                                                        <a href="{{url('user/vote-tanya/' . $item->id . '/' . Auth::id() . '/down')}}" class="btn btn-secondary">
-                                                            <i class="fa fa-arrow-down"></i>
+                                                        <a href="{{url('user/vote-jawab/' . $item->id . '/' . Auth::id() . '/down')}}" class="btn btn-secondary">
+                                                            <i class="fa fa-sort-desc"></i>
                                                         </a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    
                                     <div class="col-md-10 col-sm-12">
                                         <h5 class="card-title" style="font-weight: bold">{{$item->judul}}</h5>
                                         <span class="badge badge-pill badge-primary">
                                             {{$item->created_at->diffForHumans()}}
                                         </span>
-                                        <p p class="card-text">{!!$item->isi!!}</p>
-                                        <div class="tag">
-                                            <?php
-                                                
-                                                $tag = Pertanyaan_Tag::where('pertanyaan_id', $item->id)
-                                                                        ->get();
-                                                                        
-                                            ?>
-                                            @foreach ($tag as $tag_id)
-                                                <?php
-                                                    $tag_name = Tag::find($tag_id->tag_id);
-                                                ?>
-                                                    <button type="button" class="btn btn-info">{{$tag_name->nama_tag}}</button>
-                                                
-                                            @endforeach
-                                            
-                                        </div>
+                                        <p class="card-text">{!!$item->description!!}</p>  
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
