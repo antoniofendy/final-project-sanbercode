@@ -246,9 +246,13 @@
                             <?php
                                 $komen_jawab = Jawaban::find($item->id)->komen_jawab;
                             ?>
+                            
                                 @foreach ($komen_jawab as $komen_jwb)
                                     <?php
-                                        $user = User::find($item->user_id);
+                                        $user = User::find($komen_jwb->user_id);
+
+                                        // {{dd($user);}}
+
                                     ?>
                                     <div class="card mb-2 ml-5">
                                         <div class="card-header bg-success">
