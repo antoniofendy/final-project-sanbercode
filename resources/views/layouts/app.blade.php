@@ -20,18 +20,16 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <style>
-        body{
-            background: url('img/oriental-tiles.png');
-        }
+
     </style>
 
 </head>
-<body>
-    <div id="app" style="background-image: url(img\oriental-tiles.png)">
-        <nav class="navbar navbar-expand-md navbar-light bg-warning shadow-sm sticky-top">
+<body style="background-image: url({{asset('oriental-tiles/oriental-tiles.png')}})">
+    <div id="app">
+        <nav class="navbar navbar-expand-md navbar-light bg-warning shadow-sm sticky-top" style="box-shadow: 0 8px 30px -6px black">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Stack Over Wow
+                    <h3><span class="badge badge-primary">Stack Over Wow</span></h3>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -39,12 +37,22 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        @yield('navbar')
-                    </ul>
+                    @if (Auth::check())
+                        <ul class="navbar-nav mb-2">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{url('/home')}}"><b>Home</b></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{url('/user/pertanyaan/buat')}}"><b>Buat Pertanyaan</b></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{url('/pertanyaan/'. Auth::id())}}"><b>Pertanyaan Saya</b></a>
+                            </li>
+                        </ul>
+                    @endif
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto mb-2">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -67,7 +75,6 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>

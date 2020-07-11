@@ -145,7 +145,7 @@ class UserController extends Controller
         else{
             Alert::error('Gagal', 'Tidak boleh vote pada pertanyaan sendiri');
         }
-        return redirect('/home');
+        return redirect('/pertanyaan/'. $pertanyaan_id . '/detail');
     }
     
     public function vote_jawab($jawaban_id, $user_id, $vote){

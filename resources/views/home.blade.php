@@ -12,20 +12,15 @@
 
 @extends('layouts.app')
 
-@section('navbar')
-    <nav class="navbar navbar-light">
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </nav>
-@endsection
-
-
 <style>
 
     .card.main{
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .pagination{
+        margin: 0 auto;
+        
     }
 
 </style>
@@ -126,7 +121,9 @@
                             </div>
                         </div>
                         @endforeach
-                        
+                            <div class="paging" style="margin: 0 auto">
+                                {{ $data_tanya->links() }}
+                            </div>
                     </div>
                 </div>
             </div>
