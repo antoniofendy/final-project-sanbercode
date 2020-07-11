@@ -13,6 +13,7 @@ use \App\Vote_Pertanyaan;
 use \App\Vote_Jawaban;
 use \App\Jawaban;
 use \App\User;
+use \App\Pertanyaan_Tag;
 
 use Carbon\Carbon; 
 
@@ -233,9 +234,49 @@ class UserController extends Controller
     }
 
     public function list_pertanyaan($user_id){
-
         $data_tanya = Pertanyaan::where('user_id', $user_id)->get();
         return view('user.pertanyaan.index', compact('data_tanya'));
+    }
+
+
+    //FUNCTION HAPUS PERTANYAAN
+    public function hapus_pertanyaan($pertanyaan_id){
+
+        $user = Pertanyaan::where('id', $pertanyaan_id)->first();
+        $user_id = $user->user_id;
+        if(Auth::id() == $user_id){
+            $info = Pertanyaan::where('id', $pertanyaan_id)->delete();
+
+            if($info == true){
+                Alert::success('Berhasil', 'Berhasil menghapus pertanyaan');
+            }
+            else{
+                Alert::error('Gagal', 'Gagal menghapus pertanyaan');
+            }
+
+            $data_tanya = Pertanyaan::where('user_id', $user_id)->get();
+            return view('user.pertanyaan.index', compact('data_tanya'));
+        }
+        else{
+            Alert::error('Gagal', 'Tidak boleh menghapus pertanyaan pengguna lain');
+        }
+
+        return redirect('/home');
+    }
+
+    //FUNCTION EDIT PERTANYAAN
+    public function form_edit_pertanyaan($pertanyaan_id){
+
+        $data_tanya = Pertanyaan::find($pertanyaan_id);
+        $tanya_tag = DB::table('pertanyaan_tag')
+                    ->select('pertanyaan_tag.*', 'tag.nama_tag')
+                    ->join('tag', 'pertanyaan_tag.tag_id', '=', 'tag.id')
+                    ->where('pertanyaan_id', $pertanyaan_id)
+                    ->get()
+                    ;
+        $user = Pertanyaan::where('id', $pertanyaan_id)->first();
+        
+        
     }
 
 }

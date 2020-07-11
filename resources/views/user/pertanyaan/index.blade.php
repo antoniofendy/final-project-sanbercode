@@ -120,7 +120,9 @@
                                     
                                 </div>
                                 
-                                <a href="{{url('/pertanyaan/'. $item->id. '/detail')}}" class="btn btn-success mt-3" style="float: right"><i class="fa fa-eye"></i> Detail</a>
+                                <a href="{{url('/pertanyaan/'. $item->id. '/detail')}}" class="btn btn-success mt-3 mr-2" style="float: right"><i class="fa fa-eye"></i> Detail</a>
+                                <a href="{{url('/pertanyaan/'. $item->id. '/hapus')}}" class="btn btn-danger mt-3 mr-2" style="float: right"><i class="fa fa-trash"></i> Hapus</a>
+                                <a href="{{url('/pertanyaan/'. $item->id. '/edit')}}" class="btn btn-secondary mt-3 mr-2" style="float: right"><i class="fa fa-edit"></i> Edit</a>
                             </div>
                         </div>
                         @endforeach

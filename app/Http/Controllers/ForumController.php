@@ -31,7 +31,7 @@ class ForumController extends Controller
 
         $data_tanya = Pertanyaan::find($pertanyaan_id);
         $data_user = User::find($data_tanya['user_id']);
-        return view('user.detail_forum.jawab', [
+        return view('user.jawaban.jawab', [
             'data_tanya' => $data_tanya,
             'data_user' => $data_user
         ]);
@@ -69,7 +69,7 @@ class ForumController extends Controller
     public function komen_tanya($pertanyaan_id) {
         $data_tanya = Pertanyaan::find($pertanyaan_id);
         $data_user = User::find($data_tanya['user_id']);
-        return view('user.detail_forum.komentar_pertanyaan', [
+        return view('user.komentar.komentar_pertanyaan', [
             'data_tanya' => $data_tanya,
             'data_user' => $data_user
         ]);
@@ -94,7 +94,6 @@ class ForumController extends Controller
         $pertanyaan_id = $isi['pertanyaan_id'];
 
         unset($isi['pertanyaan_id']);
-       
         $komen = Komen_Jawab::create($isi);
     
 
@@ -106,7 +105,7 @@ class ForumController extends Controller
         // $data_jawab = Jawaban::select('pertanyaan_id')->where('pertanyaan_id', $pertanyaan_id)->get();
         $data_jawab = Jawaban::find($jawaban_id);
         $data_user = User::find($data_jawab['user_id']);
-        return view('user.detail_forum.komentar_jawaban', [
+        return view('user.komentar.komentar_jawaban', [
             'data_jawab' => $data_jawab,
             'data_user' => $data_user
         ]);

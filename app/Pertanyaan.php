@@ -22,4 +22,8 @@ class Pertanyaan extends Model
         return $this->hasMany('App\Komen_Tanya');
     }
 
+    public function user(){
+        return $this->belongsTo('App\User', 'user_id');
+    }
+
 }

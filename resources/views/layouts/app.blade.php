@@ -48,6 +48,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{url('/pertanyaan/'. Auth::id())}}"><b>Pertanyaan Saya</b></a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{url('/jawaban/'. Auth::id())}}"><b>Jawaban Saya</b></a>
+                            </li>
                         </ul>
                     @endif
 
