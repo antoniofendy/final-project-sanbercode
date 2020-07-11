@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
     //route CRUD PERTANYAAN
     Route::get('/pertanyaan/{pertanyaan_id}/hapus', 'UserController@hapus_pertanyaan');
     Route::get('/pertanyaan/{pertanyaan_id}/edit', 'UserController@form_edit_pertanyaan');
+    Route::post('/pertanyaan/{pertanyaan_id}/edit', 'UserController@store_edit_pertanyaan');
 
     //route untuk vote tanya
     Route::get('user/vote-tanya/{pertanyaan_id}/{user_id}/{vote}', 'UserController@vote_tanya');

@@ -3,6 +3,7 @@
     use Illuminate\Support\Facades\Auth;
     use \App\Jawaban; 
     use Illuminate\Support\Facades\DB;
+    use \App\User;
 
     use Carbon\Carbon;
     $current_date_time = Carbon::now()->toDateTimeString(); 
@@ -88,9 +89,12 @@
                     <div class="card-body">
                         <form method="post" action="{{url('/komen-jawab')}}">
                             @csrf
+                            <?php
+                                $user = User::find(Auth::id());
+                            ?>
                             <input type="hidden" name="created_at" value="{{$current_date_time}}">
                             <input type="hidden" name="updated_at" value="{{$current_date_time}}">
-                            <input type="hidden" name="user_id" value="{{Auth::id()}}">
+                            <input type="hidden" name="user_id" value="{{$user->id}}">
                             <input type="hidden" name="jawaban_id" value="{{$data_jawab->id}}">
                             <input type="hidden" name="pertanyaan_id" value="{{$data_jawab->pertanyaan_id}}">
                             <div class="form-group">

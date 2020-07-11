@@ -65,7 +65,7 @@ class UserController extends Controller
         return redirect('/home');
     }
 
-    public function vote_tanya($pertanyaan_id, $user_id, $vote){
+    public function vote_tanya(Request $request, $pertanyaan_id, $user_id, $vote){
 
         $cek_vote = Vote_Pertanyaan::where(['pertanyaan_id' => $pertanyaan_id,'user_id'=>$user_id])->first();
         $get_user_id = DB::table('pertanyaan')->where('id', $pertanyaan_id)->value('user_id');
@@ -138,6 +138,9 @@ class UserController extends Controller
                         }
 
                     }
+                }
+                else{
+                    Alert::error('Gagal', 'Minimal point reputasi vote down adalah 15');
                 }
             }
 
@@ -280,10 +283,55 @@ class UserController extends Controller
                     ->where('pertanyaan_id', $pertanyaan_id)
                     ->get()
                     ;
-        
+        $data_tag = "";
+        $tanya_tag = end($tanya_tag);
+        foreach ($tanya_tag as $value) {
+            if($value != end($tanya_tag)){
+                $data_tag .= $value->nama_tag . ",";
+            }
+            else{
+                $data_tag .= $value->nama_tag;
+            }
+        }
+
+        //mendapatkan data user
         $user = User::find($data_tanya->user_id)->value('name');
         
-        return view('user.pertanyaan.edit', compact('data_tanya', 'tanya_tag', 'user'));
+        return view('user.pertanyaan.edit', 
+            [
+                'data_tanya' => $data_tanya,
+                'data_tag' => $data_tag,
+                'data_user' => $user
+            ]
+        );
+        
+    }
+
+    public function store_edit_pertanyaan(Request $request){
+        //Mengupdate data tabel pertanyaan
+        $pertanyaan = Pertanyaan::find($request->pertanyaan_id);
+        $pertanyaan->update([
+            'updated_at' => $request->updated_at,
+            'judul' => $request->judul,
+            'isi' => $request->isi,
+        ]);
+
+        $tag_arr = explode(',', $request->tag);
+        
+        foreach ($tag_arr as $item) {
+            $tag_arr_assoc['nama_tag'] = $item;
+            $tag_multi[] = $tag_arr_assoc;
+        }        
+
+        $tag_upd = [];
+        foreach ($tag_multi as $tag_in) {
+            $tag = Tag::firstOrCreate($tag_in);
+            array_push($tag_upd, $tag->id);
+        }
+
+        $pertanyaan->tag()->sync($tag_upd);
+
+        return redirect('/home');
         
     }
 

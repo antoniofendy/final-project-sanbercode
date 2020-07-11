@@ -31,25 +31,25 @@
                                     {{ session('status') }}
                                 </div>
                             @endif --}}
-                            <form method="post" action="{{url('/user/pertanyaan/buat')}}">
+                            <form method="post" action="{{url('/pertanyaan/' . $data_tanya->id. '/edit')}}">
                                 @csrf
-                                <input type="hidden" name="created_at" value="{{$current_date_time}}">
                                 <input type="hidden" name="updated_at" value="{{$current_date_time}}">
+                                <input type="hidden" name="pertanyaan_id" value="{{$data_tanya->id}}">
                                 <input type="hidden" name="user_id" value="{{Auth::id()}}">
                                 <div class="form-group">
                                     <label for="judul"><b>Judul Pertanyaan</b></label>
-                                    <input type="text" name="judul" class="form-control" placeholder="ex: Cara menggunakan Laravel" size="20" required>
+                                    <input type="text" name="judul" value="{{$data_tanya->judul}}" class="form-control" placeholder="ex: Cara menggunakan Laravel" size="20" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="isi"><b>Isi Pertanyaan</b></label>
-                                    <textarea name="isi" class="form-control my-editor">{!! old('isi', $isi ?? '') !!}</textarea>
+                                    <textarea name="isi" class="form-control my-editor">{!! old('isi', $isi ?? '') !!}{!!$data_tanya->isi!!}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="judul"><b>Tag</b></label>
-                                    <input type="text" name="tag" class="form-control" placeholder="ex: javascript,laravel,..." size="20" required>
+                                    <input type="text" name="tag" value="{{$data_tag}}" class="form-control" placeholder="ex: javascript,laravel,..." size="20" required>
                                 </div>
                                 <div class="form-group text-center">
-                                    <button type="submit" class="btn btn-outline-primary">Buat Pertanyaan</button>
+                                    <button type="submit" class="btn btn-outline-primary">Edit Pertanyaan</button>
                                 </div>
                             </form>
                             
