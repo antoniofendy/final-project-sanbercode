@@ -23,49 +23,29 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card main">
-                        <div class="card-header">Edit Pertanyaan</div>
-                        
+                        <div class="card-header">Edit Jawaban</div>
+                        {{-- {{dd($data_jawab->created_at)}} --}}
                         <div class="card-body">
                             {{-- @if (session('status'))
                                 <div class="alert alert-success" role="alert">
                                     {{ session('status') }}
                                 </div>
                             @endif --}}
-                            {{-- {{dd($tanya_tag->count())}} --}}
-                            <form method="post" action="{{url('/user/pertanyaan/buat')}}">
+                            <form method="post" action="{{url('/edit-jawaban/')}}">
                                 @csrf
-                                <input type="hidden" name="created_at" value="{{$current_date_time}}">
+                                <input type="hidden" name="id" value="{{$data_jawab->id}}">
+                                <input type="hidden" name="created_at" value="{{$data_jawab->created_at}}">
                                 <input type="hidden" name="updated_at" value="{{$current_date_time}}">
                                 <input type="hidden" name="user_id" value="{{Auth::id()}}">
+                                <input type="hidden" name="pertanyaan_id" value="{{$data_jawab->pertanyaan_id}}">
                                 <div class="form-group">
-                                    <label for="judul"><b>Judul Pertanyaan</b></label>
-                                <input type="text" name="judul" class="form-control" placeholder="ex: Cara menggunakan Laravel" value="{{$data_tanya->judul}}" size="20" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="isi"><b>Isi Pertanyaan</b></label>
-                                    <textarea name="isi" class="form-control my-editor">{!! $data_tanya->isi !!}</textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="judul"><b>Tag</b></label>
-                                <input type="text" name="tag" class="form-control" placeholder="ex: javascript,laravel,..." 
-                                    value="<?php 
-                                                $tag = "";
-                                                for ($i = 0; $i < $tanya_tag->count(); $i++) {
-                                                    
-                                                    if ($i == $tanya_tag->count()-1) {
-                                                        echo $tag = "".$tanya_tag[$i]->nama_tag;
-                                                    } else {
-                                                        echo $tag = "".$tanya_tag[$i]->nama_tag.",";
-                                                    }
-                                                    
-                                                }
-                                            ?>"size="20" required>
+                                    <label for="isi"><b>Isi Jawaban</b></label>
+                                    <textarea style="height: 200px" name="description" class="form-control my-editor">{!! $data_jawab->description !!}</textarea>
                                 </div>
                                 <div class="form-group text-center">
                                     <button type="submit" class="btn btn-outline-primary">Edit</button>
                                 </div>
                             </form>
-                            
                         </div>
                     </div>
                 </div>

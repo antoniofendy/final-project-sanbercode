@@ -289,4 +289,64 @@ class UserController extends Controller
 
     //Bagian untuk CRUD JAWABAN - MAS SANI
 
+    // edit jawaban
+    public function form_edit_jawaban($jawaban_id){
+
+        //mendapatkan data pertanyaan
+        $data_jawab = Jawaban::find($jawaban_id);
+        
+        $user = User::find($data_jawab->user_id)->value('name');
+        
+        return view('user.jawaban.edit', compact('data_jawab', 'user'));
+        
+    }
+
+    public function update_jawaban(Request $request) {
+
+        $request->request->remove('_token');
+
+        if(Auth::id() == $request->user_id){
+
+            $info = Jawaban::whereId($request->id)->update($request->all());
+
+            if($info == true){
+                Alert::success('Berhasil', 'Berhasil update jawaban');
+            }
+            else{
+                Alert::error('Gagal', 'Gagal update jawaban');
+            }
+
+            $data_tanya = Pertanyaan::where('user_id', $request->user_id)->get();
+            return view('user.pertanyaan.index', compact('data_tanya'));
+        }
+        else{
+            Alert::error('Gagal', 'Tidak boleh update jawaban pengguna lain');
+        }
+
+        return redirect('/pertanyaan/'.$request->id.'/detail');
+    }
+
+    public function hapus_jawaban($jawaban_id){
+
+        $data_jawab = Jawaban::where('id', $jawaban_id)->first();
+
+        $user_id = $data_jawab->user_id;
+
+        if(Auth::id() == $user_id){
+            $info = Jawaban::where('id', $jawaban_id)->delete();
+
+            if($info == true){
+                Alert::success('Berhasil', 'Berhasil menghapus jawaban');
+            }
+            else{
+                Alert::error('Gagal', 'Gagal menghapus jawaban');
+            }
+        }
+        else{
+            Alert::error('Gagal', 'Tidak boleh menghapus jawaban pengguna lain');
+        }
+
+        return redirect('/pertanyaan/'.$data_jawab->pertanyaan_id.'/detail');
+    
+    }
 }
