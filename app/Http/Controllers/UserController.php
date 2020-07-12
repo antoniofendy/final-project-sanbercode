@@ -348,7 +348,9 @@ class UserController extends Controller
 
         $pertanyaan->tag()->sync($tag_upd);
 
-        return redirect('/home');
+        Alert::success('Berhasil', 'Berhasil mengedit pertanyaan');
+
+        return redirect('/pertanyaan/' . Auth::id());
         
     }
 
@@ -382,7 +384,7 @@ class UserController extends Controller
             }
 
             $data_tanya = Pertanyaan::where('user_id', $request->user_id)->get();
-            return view('user.pertanyaan.index', compact('data_tanya'));
+            return redirect('/jawaban/' . Auth::id());
         }
         else{
             Alert::error('Gagal', 'Tidak boleh update jawaban pengguna lain');
