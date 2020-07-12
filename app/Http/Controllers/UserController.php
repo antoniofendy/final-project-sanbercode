@@ -21,10 +21,6 @@ include('ForumController.php');
 
 class UserController extends Controller
 {
-    
-    public function buat_pertanyaan(){
-        return view('user.pertanyaan.buat');
-    }
     public function buat_komen() // comment
     {
         return view('user.komentar.comment');
@@ -34,36 +30,7 @@ class UserController extends Controller
         return view('user.komentar.hal');
     }
 
-    public function simpan_pertanyaan(Request $request)
-    {
-        $isi = $request->all();
-        unset($isi['_token']);
-
-        $tanya = Pertanyaan::create([
-            'judul' => $isi['judul'],
-            'isi' => $isi['isi'],
-            'user_id' => $isi['user_id'],
-            'created_at' => $isi['created_at'],
-            'updated_at' => $isi['updated_at']
-        ]);
-
-        $tag_arr = explode(',', $isi['tag']);
-
-        foreach ($tag_arr as $item) {
-            $tag_arr_assoc['nama_tag'] = $item;
-            $tag_multi[] = $tag_arr_assoc;
-        }
-
-        foreach ($tag_multi as $tag_in) {
-            $tag = Tag::firstOrCreate($tag_in);
-            $tanya->tag()->attach($tag->id);
-        }
-
-        Alert::info('Berhasil', 'Pertanyaan berhasil dikirim');
-
-
-        return redirect('/home');
-    }
+    
 
     public function vote_tanya(Request $request, $pertanyaan_id, $user_id, $vote){
 
@@ -230,190 +197,11 @@ class UserController extends Controller
                 }
             }
 
-
         }
         else{
             Alert::error('Gagal', 'Tidak boleh vote pada jawaban sendiri');
         }
         $jwb = Jawaban::find($jawaban_id);
         return redirect('/pertanyaan/' . $jwb->pertanyaan_id . "/detail");
-    }
-
-    //FUNCTION INDEX PERTANYAAN
-    public function list_pertanyaan($user_id){
-        $data_tanya = Pertanyaan::where('user_id', $user_id)->get();
-        return view('user.pertanyaan.index', compact('data_tanya'));
-    }
-
-    //FUNCTION INDEX JAWABAN
-    public function list_jawaban($user_id){
-
-        $data_jawab = Jawaban::where('user_id', $user_id)->get();
-        
-        return view('user.jawaban.index', compact('data_jawab'));
-
-    }
-
-    //FUNCTION HAPUS PERTANYAAN
-    public function hapus_pertanyaan($pertanyaan_id){
-
-        $user = Pertanyaan::where('id', $pertanyaan_id)->first();
-        $user_id = $user->user_id;
-        if(Auth::id() == $user_id){
-            $info = Pertanyaan::where('id', $pertanyaan_id)->delete();
-
-            if($info == true){
-                Alert::success('Berhasil', 'Berhasil menghapus pertanyaan');
-            }
-            else{
-                Alert::error('Gagal', 'Gagal menghapus pertanyaan');
-            }
-
-            $data_tanya = Pertanyaan::where('user_id', $user_id)->get();
-            return view('user.pertanyaan.index', compact('data_tanya'));
-        }
-        else{
-            Alert::error('Gagal', 'Tidak boleh menghapus pertanyaan pengguna lain');
-        }
-
-        return redirect('/home');
-    }
-
-    //FUNCTION EDIT PERTANYAAN
-    public function form_edit_pertanyaan($pertanyaan_id){
-
-        $user = Pertanyaan::where('id', $pertanyaan_id)->first();
-        $user_id = $user->user_id;
-        if(Auth::id() == $user_id){
-
-            //mendapatkan data pertanyaan
-            $data_tanya = Pertanyaan::find($pertanyaan_id);
-
-            //mendapatkan data tag
-            $tanya_tag = DB::table('pertanyaan_tag')
-                        ->select('pertanyaan_tag.*', 'tag.nama_tag')
-                        ->join('tag', 'pertanyaan_tag.tag_id', '=', 'tag.id')
-                        ->where('pertanyaan_id', $pertanyaan_id)
-                        ->get()
-                        ;
-            $data_tag = "";
-            $tanya_tag = end($tanya_tag);
-            foreach ($tanya_tag as $value) {
-                if($value != end($tanya_tag)){
-                    $data_tag .= $value->nama_tag . ",";
-                }
-                else{
-                    $data_tag .= $value->nama_tag;
-                }
-            }
-
-            //mendapatkan data user
-            $user = User::find($data_tanya->user_id)->value('name');
-            
-            return view('user.pertanyaan.edit', 
-                [
-                    'data_tanya' => $data_tanya,
-                    'data_tag' => $data_tag,
-                    'data_user' => $user
-                ]
-            );
-        }
-        else{
-            Alert::error('Gagal', 'Tidak boleh mengedit pertanyaan pengguna lain');
-        }
-        return redirect('/home');
-    }
-
-    public function store_edit_pertanyaan(Request $request){
-        //Mengupdate data tabel pertanyaan
-        $pertanyaan = Pertanyaan::find($request->pertanyaan_id);
-        $pertanyaan->update([
-            'updated_at' => $request->updated_at,
-            'judul' => $request->judul,
-            'isi' => $request->isi,
-        ]);
-
-        $tag_arr = explode(',', $request->tag);
-        
-        foreach ($tag_arr as $item) {
-            $tag_arr_assoc['nama_tag'] = $item;
-            $tag_multi[] = $tag_arr_assoc;
-        }        
-
-        $tag_upd = [];
-        foreach ($tag_multi as $tag_in) {
-            $tag = Tag::firstOrCreate($tag_in);
-            array_push($tag_upd, $tag->id);
-        }
-
-        $pertanyaan->tag()->sync($tag_upd);
-
-        Alert::success('Berhasil', 'Berhasil mengedit pertanyaan');
-
-        return redirect('/pertanyaan/' . Auth::id());
-        
-    }
-
-    //Bagian untuk CRUD JAWABAN - MAS SANI
-
-    // edit jawaban
-    public function form_edit_jawaban($jawaban_id){
-
-        //mendapatkan data pertanyaan
-        $data_jawab = Jawaban::find($jawaban_id);
-        
-        $user = User::find($data_jawab->user_id)->value('name');
-        
-        return view('user.jawaban.edit', compact('data_jawab', 'user'));
-        
-    }
-
-    public function update_jawaban(Request $request) {
-
-        $request->request->remove('_token');
-
-        if(Auth::id() == $request->user_id){
-
-            $info = Jawaban::whereId($request->id)->update($request->all());
-
-            if($info == true){
-                Alert::success('Berhasil', 'Berhasil update jawaban');
-            }
-            else{
-                Alert::error('Gagal', 'Gagal update jawaban');
-            }
-
-            $data_tanya = Pertanyaan::where('user_id', $request->user_id)->get();
-            return redirect('/jawaban/' . Auth::id());
-        }
-        else{
-            Alert::error('Gagal', 'Tidak boleh update jawaban pengguna lain');
-        }
-
-        return redirect('/home');
-    }
-
-    public function hapus_jawaban($jawaban_id){
-
-        $data_jawab = Jawaban::where('id', $jawaban_id)->first();
-
-        $user_id = $data_jawab->user_id;
-
-        if(Auth::id() == $user_id){
-            $info = Jawaban::where('id', $jawaban_id)->delete();
-
-            if($info == true){
-                Alert::success('Berhasil', 'Berhasil menghapus jawaban');
-            }
-            else{
-                Alert::error('Gagal', 'Gagal menghapus jawaban');
-            }
-        }
-        else{
-            Alert::error('Gagal', 'Tidak boleh menghapus jawaban pengguna lain');
-        }
-
-        return redirect('/home');
-    
     }
 }

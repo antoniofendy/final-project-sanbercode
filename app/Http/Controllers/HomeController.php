@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $tanya = Pertanyaan::paginate(5);
+        $tanya = Pertanyaan::orderBy('created_at', 'DESC')->paginate(5);
 
         return view('home', ['data_tanya' => $tanya]);
     }

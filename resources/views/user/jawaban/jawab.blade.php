@@ -104,8 +104,13 @@
                                         </div>
                                         <div class="col-md-10 col-sm-12">
                                             <h5 class="card-title" style="font-weight: bold">{{$data_tanya->judul}}</h5>
-        
-                                            <p p class="card-text">{!!$data_tanya->isi!!}</p>
+                                            <span class="badge badge-pill badge-primary">
+                                                Created : {{$data_tanya->created_at->diffForHumans()}}
+                                            </span>
+                                            <span class="badge badge-pill badge-primary">
+                                                Updated : {{$data_tanya->created_at->diffForHumans()}}
+                                            </span>
+                                            <p class="card-text">{!!$data_tanya->isi!!}</p>
                                             <div class="tag">
                                                 <?php
                                                 

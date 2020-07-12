@@ -71,7 +71,11 @@
                             <!-- BAGIAN PERTANYAAN -->
                             <div class="card mb-2">
                                 <div class="card-header bg-warning">
-                                    Pertanyaan dari : {{$data_user->name}}
+                                    <p style="display: inline-block;">Pertanyaan dari : {{$data_user->name}}</p>
+                                    @if ($data_tanya->user_id == Auth::id())
+                                        <a href="{{url('/pertanyaan/'. $data_tanya->id. '/hapus')}}" style="float: right; display:inline;"><i class="fa fa-trash" aria-hidden="true"></i><b> Hapus</b></a>
+                                        <a href="{{url('/pertanyaan/'. $data_tanya->id. '/edit')}}" class="mr-3" style="float: right; display:inline;"><i class="fa fa-pencil" aria-hidden="true"></i><b> Edit</b></a>
+                                    @endif
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
@@ -87,7 +91,7 @@
                                                         <div class="col-12 mt-3">
                                                             <a href="#" class="btn btn-secondary disabled">
                                                                 <?php
-                                                                    
+                                                                     
                                                                     $up_vote = DB::table('vote_pertanyaan')->where(['pertanyaan_id'=>$data_tanya->id, 'up_down'=>true])
                                                                             ->count();
                                                                     $down_vote = DB::table('vote_pertanyaan')->where(['pertanyaan_id'=>$data_tanya->id, 'up_down'=>false])
@@ -110,7 +114,10 @@
                                         <div class="col-md-10 col-sm-12">
                                             <h5 class="card-title" style="font-weight: bold">{{$data_tanya->judul}}</h5>
                                             <span class="badge badge-pill badge-primary">
-                                                {{$data_tanya->created_at->diffForHumans()}}
+                                                Created : {{$data_tanya->created_at->diffForHumans()}}
+                                            </span>
+                                            <span class="badge badge-pill badge-primary">
+                                                Updated : {{$data_tanya->updated_at->diffForHumans()}}
                                             </span>
                                             <p p class="card-text">{!!$data_tanya->isi!!}</p>
                                             <div class="tag">
@@ -182,8 +189,10 @@
                             <div class="card mb-2">
                                 <div class="card-header bg-info">
                                     <p style="display: inline-block;" class="">Jawaban dari : {{$user->name}}</p>
-                                    <a href="{{url('/hapus-jawaban/'. $item->id)}}" style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-trash" aria-hidden="true"></i> Hapus</a>
-                                    <a href="{{url('/edit-jawaban/'. $item->id)}}" class="mr-3" style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                                    @if ($item->user_id == Auth::id())
+                                        <a href="{{url('/hapus-jawaban/'. $item->id)}}" style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-trash" aria-hidden="true"></i> Hapus</a>
+                                        <a href="{{url('/edit-jawaban/'. $item->id)}}" class="mr-3" style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                                    @endif
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
@@ -246,6 +255,7 @@
                                 </div>
                             </div>
 
+                            <!-- BAGIAN KOMENTAR JAWABAN -->
                             <?php
                                 $komen_jawab = Jawaban::find($item->id)->komen_jawab;
                             ?>
@@ -265,7 +275,7 @@
                                             <div class="row">
                                                 <div class="col-md-10 col-sm-12">
                                                     <span class="badge badge-pill badge-primary">
-                                                        {{$item->created_at->diffForHumans()}}
+                                                        {{$komen_jwb->created_at->diffForHumans()}}
                                                     </span>
                                                     <p p class="card-text">{!!$komen_jwb->isi!!}</p>
                                                 </div>

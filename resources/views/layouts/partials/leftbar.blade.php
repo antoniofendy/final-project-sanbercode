@@ -6,12 +6,9 @@
 
 <div class="card main">
     <div class="card-body">
-        <h5 class="card-title">Menu</h5>
-        <div class="list-group">
-            <a href="{{url('/home')}}" class="list-group-item list-group-item-action">Home</a>
-            <a href="{{url('/user/pertanyaan/buat')}}" class="list-group-item list-group-item-action">Buat Pertanyaan</a>
-            <a href="{{url('/pertanyaan/'. Auth::id())}}" class="list-group-item list-group-item-action">Pertanyaan Anda</a>
-            <a href="#" class="list-group-item list-group-item-action">Profil</a>
-        </div>
+        <h5 class="card-title"><b>Quotes untuk kamu</b></h5>
+        <p class="card-text" style="font-family: 'Merienda One', cursive;">
+            "Rencana sederhana yang disusun secara matang lalu diterapkan jauh lebih baik daripada rencana besar yang terus-menerus tertunda."
+        </p>
     </div>
 </div>

@@ -27,28 +27,6 @@ class ForumController extends Controller
 
     }
 
-    public function jawab($pertanyaan_id){
-
-        $data_tanya = Pertanyaan::find($pertanyaan_id);
-        $data_user = User::find($data_tanya['user_id']);
-        return view('user.jawaban.jawab', [
-            'data_tanya' => $data_tanya,
-            'data_user' => $data_user
-        ]);
-
-    }
-
-    public function jawabcreate(Request $request){
-        $isi = $request->all();
-        unset($isi['_token']);
-        $jawab = Jawaban::create($isi);
-
-        Alert::info('Berhasil', 'Jawaban anda telah terkirim');
-
-
-        return redirect('/pertanyaan/'. $isi['pertanyaan_id'] . '/detail');
-    }
-
     public function jawab_tepat(Request $request){
 
         $jawaban = Jawaban::find($request->jawaban_id);
@@ -90,7 +68,6 @@ class ForumController extends Controller
     public function komen_jawabcreate(Request $request){
         $isi = $request->all();
         unset($isi['_token']);
-
         $pertanyaan_id = $isi['pertanyaan_id'];
 
         unset($isi['pertanyaan_id']);
