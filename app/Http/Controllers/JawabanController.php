@@ -90,6 +90,7 @@ class JawabanController extends Controller
         return redirect('/home');
     }
 
+    // Function Hapus Jawaban
     public function hapus_jawaban($jawaban_id){
 
         $data_jawab = Jawaban::where('id', $jawaban_id)->first();
@@ -97,6 +98,7 @@ class JawabanController extends Controller
         $user_id = $data_jawab->user_id;
 
         if(Auth::id() == $user_id){
+
             $info = Jawaban::where('id', $jawaban_id)->delete();
 
             if($info == true){

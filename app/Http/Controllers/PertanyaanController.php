@@ -68,19 +68,6 @@ class PertanyaanController extends Controller
         $user = Pertanyaan::where('id', $pertanyaan_id)->first();
         $user_id = $user->user_id;
         if(Auth::id() == $user_id){
-            
-            // Mendapatkan data vote pertanyaan
-            $vote_pertanyaan = Vote_Pertanyaan::where('pertanyaan_id', $pertanyaan_id)->count();
-
-            // Mendapatkan data jumlah reputasi pemilik pertanyaan
-            $data_reputasi_user = User::where('id', $user_id)->select('reputasi')->first();
-            $data_reputasi_user = $data_reputasi_user['reputasi'];
-            
-            // Mengurangi data reputasi user dengan jumlah vote yang ia dapatkan dari pertanyaan tersebut.
-            $data_reputasi_baru = $data_reputasi_user - ($vote_pertanyaan * 10);
-            
-            //Mengupdate data reputasi user di database
-            User::where('id', $user_id)->update(['reputasi' => $data_reputasi_baru]);
 
             //Menghapus pertanyaan 
             $info = Pertanyaan::where('id', $pertanyaan_id)->delete();
