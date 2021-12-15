@@ -23,9 +23,8 @@
     }
 
 ?>
-{{-- TinyMCE akan error bila tidak diberikan doctype --}}
-<!DOCTYPE html>
 
+<!DOCTYPE HTML>
 @extends('layouts.app')
 
 @section('navbar')
@@ -45,7 +44,6 @@
 </style>
 
 @section('content')
-
 <div class="row p-2">
 
     <div class="col-md-2 mb-2">
@@ -131,8 +129,8 @@
                                     </div>
                                 </div>
 
-                                {{-- <a href="{{url('/jawab/'. $data_tanya->id)}}" class="btn btn-success mt-3 mr-2"
-                                    style="float: right"><i class="fa fa-reply"></i> Jawab</a> --}}
+                                <a href="{{url('/jawab/'. $data_tanya->id)}}" class="btn btn-success mt-3 mr-2"
+                                    style="float: right"><i class="fa fa-reply"></i> Jawab</a>
                                 {{-- <a href="{{url('/komen_jawab/'. $data_tanya->id)}}"
                                     class="btn btn-success mt-3 mr-2" style="float: right"><i class="fa fa-comment"></i>
                                     Komentar</a> --}}
@@ -182,7 +180,7 @@
 @endsection
 
 @push('scripts')
-    
+
 <script>
     var editor_config = {
     path_absolute : "/",

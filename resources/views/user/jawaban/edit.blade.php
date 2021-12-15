@@ -6,9 +6,8 @@
     $current_date_time = Carbon::now()->toDateTimeString(); 
 
 ?>
-{{-- TinyMCE akan error bila tidak diberikan doctype --}}
-<!DOCTYPE html>
 
+<!DOCTYPE HTML>
 @extends('layouts.app')
 
 @section('title', 'Buat Pertanyaan')

@@ -1,7 +1,9 @@
+
+
 <?php 
 
     use Illuminate\Support\Facades\Auth;
-    $user = Auth::user();
+    $user = Auth::user(); 
 
 ?>
 <h3 class="card-title">{{$user->name}}</h3>

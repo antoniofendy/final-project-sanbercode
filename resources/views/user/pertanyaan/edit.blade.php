@@ -7,6 +7,7 @@
 
 ?>
 
+<!DOCTYPE HTML>
 @extends('layouts.app')
 
 @section('title', 'Buat Pertanyaan')
