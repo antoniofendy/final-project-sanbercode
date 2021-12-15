@@ -35,7 +35,7 @@ class ForumController extends Controller
         $pertanyaan = Pertanyaan::find($jawaban->pertanyaan_id);
         $pertanyaan->update(['jawaban_id' => $jawaban->id]);
 
-        //menambahkan point reputasi ke pembuar jawaban
+        //menambahkan point reputasi ke pembuat jawaban
         $user = User::find($jawaban->user_id);
         $user->increment('reputasi', 15);
 

@@ -21,6 +21,10 @@ class CreatePertanyaanTable extends Migration
             //jawaban_id disi ketika user sudah menentukan jawaban terbaik, makanya di nullable
             $table->unsignedBigInteger('jawaban_id')->nullable();
             $table->timestamps();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 
