@@ -70,18 +70,49 @@ class PertanyaanController extends Controller
         if(Auth::id() == $user_id){
             
             // UPDATE REPUTASI PEMILIK PERTANYAAN
-            // Mendapatkan data vote pertanyaan
-            $vote_pertanyaan = Vote_Pertanyaan::where('pertanyaan_id', $pertanyaan_id)->count();
+                // Mendapatkan data vote pertanyaan
+                $vote_pertanyaan = Vote_Pertanyaan::where('pertanyaan_id', $pertanyaan_id)->count();
 
-            // Mendapatkan data jumlah reputasi pemilik pertanyaan
-            $data_reputasi_user = User::where('id', $user_id)->select('reputasi')->first();
-            $data_reputasi_user = $data_reputasi_user['reputasi'];
-            
-            // Mengurangi data reputasi user dengan jumlah vote yang ia dapatkan dari pertanyaan tersebut.
-            $data_reputasi_baru = $data_reputasi_user - ($vote_pertanyaan * 10);
-            
-            //Mengupdate data reputasi user di database
-            User::where('id', $user_id)->update(['reputasi' => $data_reputasi_baru]);
+                // Mendapatkan data jumlah reputasi pemilik pertanyaan
+                $data_reputasi_user = User::where('id', $user_id)->select('reputasi')->first();
+                $data_reputasi_user = $data_reputasi_user['reputasi'];
+                
+                // Mengurangi data reputasi user dengan jumlah vote yang ia dapatkan dari pertanyaan tersebut.
+                $data_reputasi_baru = $data_reputasi_user - ($vote_pertanyaan * 10);
+                
+                //Mengupdate data reputasi user di database
+                User::where('id', $user_id)->update(['reputasi' => $data_reputasi_baru]);
+
+            // UPDATE REPUTASI PENJAWAB DENGAN JAWABAN TERVERIFIKASI
+                $jawaban_terverifikasi = Pertanyaan::where("pertanyaan_id", $pertanyaan_id)->join('jawaban', 'jawaban_id', '=', 'jawaban.id')->select("jawaban_id", "jawaban.user_id")->first();
+                if (!empty($jawaban_terverifikasi['user_id']))
+                {
+                    // Mengurangi data reputasi user dengan 15.
+                    $data_reputasi_user = User::where('id', $jawaban_terverifikasi['user_id'])->select('reputasi')->first();
+                    $data_reputasi_user = $data_reputasi_user['reputasi'];
+                    $data_reputasi_baru = $data_reputasi_user - 15;
+                    //Mengupdate data reputasi user di database
+                    User::where('id', $jawaban_terverifikasi['user_id'])->update(['reputasi' => $data_reputasi_baru]);
+                }
+
+            // UPDATE REPUTASI SETIAP PENJAWAB PERTANYAAN
+                $list_jawaban_dari_pertanyaan = Jawaban::where("pertanyaan_id", $pertanyaan_id)->select("id", "user_id")->get();
+                if(!empty($list_jawaban_dari_pertanyaan[0]))
+                {
+                    foreach ($list_jawaban_dari_pertanyaan as $jawaban) {
+                        // Mencari tahu apakah jawaban sudah tervote atau belum
+                        $id_jawaban = $jawaban['id'];
+                        $id_penjawab = $jawaban['user_id'];
+                        $data_vote = Vote_Jawaban::where("jawaban_id", $id_jawaban)->count();
+                        
+                        // Mengurangi data reputasi user dengan jumlah vote jawabannya.
+                        $data_reputasi_user = User::where('id', $id_penjawab)->select('reputasi')->first();
+                        $data_reputasi_user = $data_reputasi_user['reputasi'];
+                        $data_reputasi_baru = $data_reputasi_user - $data_vote * 10;
+                        //Mengupdate data reputasi user di database
+                        User::where('id', $id_penjawab)->update(['reputasi' => $data_reputasi_baru]);
+                    }
+                }
 
             //Menghapus pertanyaan 
             $info = Pertanyaan::where('id', $pertanyaan_id)->delete();

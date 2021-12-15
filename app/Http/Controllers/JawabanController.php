@@ -100,7 +100,7 @@ class JawabanController extends Controller
         if(Auth::id() == $user_id){
 
             $info = Jawaban::where('id', $jawaban_id)->delete();
-
+            
             if($info == true){
                 Alert::success('Berhasil', 'Berhasil menghapus jawaban');
             }
