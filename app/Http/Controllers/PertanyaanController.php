@@ -94,7 +94,7 @@ class PertanyaanController extends Controller
                     //Mengupdate data reputasi user di database
                     User::where('id', $jawaban_terverifikasi['user_id'])->update(['reputasi' => $data_reputasi_baru]);
                 }
-
+                
             // UPDATE REPUTASI SETIAP PENJAWAB PERTANYAAN
                 $list_jawaban_dari_pertanyaan = Jawaban::where("pertanyaan_id", $pertanyaan_id)->select("id", "user_id")->get();
                 if(!empty($list_jawaban_dari_pertanyaan[0]))
