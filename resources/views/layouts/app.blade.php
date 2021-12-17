@@ -12,7 +12,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="https://cdn.tiny.cloud/1/16sx1ysz0h8tnez6gw0ymqvzgeainqb7x62avti907is5j20/tinymce/5/tinymce.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/16sx1ysz0h8tnez6gw0ymqvzgeainqb7x62avti907is5j20/tinymce/5/tinymce.min.js">
+    </script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -46,17 +47,28 @@
                     @if (Auth::check())
                     <ul class="navbar-nav mb-2">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('/home')}}"><b>Home</b></a>
+                            <a class="nav-link" href="{{url('/home')}}">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('/user/pertanyaan/buat')}}"><b>Buat Pertanyaan</b></a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Forum
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="{{url('/user/pertanyaan/buat')}}">Buat
+                                    Pertanyaan</a>
+                                <a class="dropdown-item" href="{{url('/pertanyaan/'. Auth::id())}}">Pertanyaan
+                                    Saya</a>
+                                <a class="dropdown-item" href="{{url('/jawaban/'. Auth::id())}}">Jawaban
+                                    Saya</a>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('/pertanyaan/'. Auth::id())}}"><b>Pertanyaan Saya</b></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('/jawaban/'. Auth::id())}}"><b>Jawaban Saya</b></a>
-                        </li>
+                        <form class="form-inline" method="post" action="{{url('/search')}}">
+                            @csrf
+                            <input class="form-control mr-sm-2" type="search" placeholder="Cari Topik"
+                                aria-label="Search" name="keyword">
+                            <button class="btn btn-primary my-2 my-sm-0" type="submit">Cari</button>
+                        </form>
                     </ul>
                     @endif
 
