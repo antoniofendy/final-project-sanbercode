@@ -32,6 +32,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/user/pertanyaan/buat', 'PertanyaanController@buat_pertanyaan');
     Route::post('/user/pertanyaan/buat', 'PertanyaanController@simpan_pertanyaan');
 
+    // route untuk mencari topik forums
+    Route::post('/search', 'HomeController@search');
+    Route::get('/search', 'HomeController@search');
+
     //route untuk list pertanyaan user
     Route::get('/pertanyaan/{user_id}', 'PertanyaanController@list_pertanyaan');
 

@@ -30,4 +30,16 @@ class HomeController extends Controller
 
         return view('home', ['data_tanya' => $tanya]);
     }
+
+    public function search(Request $request)
+    {
+        $hasil_pencarian = Pertanyaan::where([
+            ["judul", "like", "%" . $request->keyword . "%"],
+            ["isi", "like", "%" . $request->keyword . "%"]
+        ])->get();
+        
+        $data_pencarian = [$request->keyword, $hasil_pencarian];
+
+        return view('search', compact('data_pencarian', 'data_pencarian'));
+    }
 }
