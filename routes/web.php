@@ -34,7 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // route untuk mencari topik forums
     Route::post('/search', 'HomeController@search');
-    Route::get('/search', 'HomeController@search');
+    Route::get('/search/{keyword}', 'HomeController@searchpaginate');
 
     //route untuk list pertanyaan user
     Route::get('/pertanyaan/{user_id}', 'PertanyaanController@list_pertanyaan');

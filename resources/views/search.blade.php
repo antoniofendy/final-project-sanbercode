@@ -118,9 +118,9 @@
                             </div>
                         </div>
                         @endforeach
-                        {{-- <div class="paging" style="margin: 0 auto">
-                            {{ $data_pencarian->links() }}
-                        </div> --}}
+                        <div class="paging" style="margin: 0 auto">
+                            {{ $data_pencarian[1]->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

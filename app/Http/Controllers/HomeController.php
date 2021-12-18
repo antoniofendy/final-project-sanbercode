@@ -31,14 +31,32 @@ class HomeController extends Controller
         return view('home', ['data_tanya' => $tanya]);
     }
 
+    // FUNCTION UNTUK PENCARIAN DAN PAGINATION PENCARIAN HALAMAN SATU KE HALAMAN DUA DST
     public function search(Request $request)
     {
         $hasil_pencarian = Pertanyaan::where([
             ["judul", "like", "%" . $request->keyword . "%"],
             ["isi", "like", "%" . $request->keyword . "%"]
-        ])->get();
+        ])->paginate(2);
         
+        $hasil_pencarian->withPath('search/' . $request->keyword);
+
         $data_pencarian = [$request->keyword, $hasil_pencarian];
+
+        return view('search', compact('data_pencarian', 'data_pencarian'));
+    }
+
+    // FUNCTION UNTUK PENCARIAN DAN PAGINATION PENCARIAN DARI HALAMAN DUA DST KE HALAMAN SATU
+    public function searchpaginate($keyword)
+    {
+        $hasil_pencarian = Pertanyaan::where([
+            ["judul", "like", "%" . $keyword . "%"],
+            ["isi", "like", "%" . $keyword . "%"]
+        ])->paginate(2);
+        
+        $hasil_pencarian->withPath($keyword);
+
+        $data_pencarian = [$keyword, $hasil_pencarian];
 
         return view('search', compact('data_pencarian', 'data_pencarian'));
     }
