@@ -30,7 +30,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-warning shadow-sm sticky-top"
+        <nav class="navbar navbar-expand-md navbar-light bg-secondary shadow-sm sticky-top"
             style="box-shadow: 0 8px 30px -6px black">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">

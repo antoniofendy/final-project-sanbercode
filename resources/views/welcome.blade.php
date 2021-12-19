@@ -21,11 +21,6 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{asset('landing_page/css/styles.css')}}" rel="stylesheet" />
 
-    <style>
-        .accent-color {
-            background-color: #dc3545 !important;
-        }
-    </style>
 </head>
 
 <body id="page-top">
