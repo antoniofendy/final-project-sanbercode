@@ -37,7 +37,7 @@ class HomeController extends Controller
         $hasil_pencarian = Pertanyaan::where([
             ["judul", "like", "%" . $request->keyword . "%"],
             ["isi", "like", "%" . $request->keyword . "%"]
-        ])->paginate(2);
+        ])->paginate(5);
         
         $hasil_pencarian->withPath('search/' . $request->keyword);
 
@@ -52,7 +52,7 @@ class HomeController extends Controller
         $hasil_pencarian = Pertanyaan::where([
             ["judul", "like", "%" . $keyword . "%"],
             ["isi", "like", "%" . $keyword . "%"]
-        ])->paginate(2);
+        ])->paginate(5);
         
         $hasil_pencarian->withPath($keyword);
 
