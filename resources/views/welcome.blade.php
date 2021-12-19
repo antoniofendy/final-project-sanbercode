@@ -119,7 +119,7 @@
     <!-- Footer-->
     <footer class="bg-danger py-5">
         <div class="container">
-            <div class="small text-center text-white">Copyright © 2020 - Stack Over Wow</div>
+            <div class="text-sans small text-center text-white">Copyright ©2021 - Kelompok 4</div>
         </div>
     </footer>
     <!-- Bootstrap core JS-->

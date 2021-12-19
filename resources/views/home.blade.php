@@ -35,9 +35,9 @@
     <div class="col-md-8 mb-2">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="card main">
-                    <div class="card-header">Pertanyaan Terbaru</div>
-                    <div class="card-body">
+                
+                    <div class="h3 mb-3">Pertanyaan Terbaru</div>
+                    
                         {{-- @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
@@ -54,19 +54,19 @@
                                 Dari : {{$nama_user}}
                             </div>
                             
-                            <div class="card-body bg-warning">
+                            <div class="card-body bg-secondary">
                                 <div class="row">
                                     <div class="col-md-2 col-sm-12 text-center">
-                                        <div class="card border-0 bg-warning">
+                                        <div class="card border-0 bg-secondary">
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <a href="{{url('user/vote-tanya/' . $item->id . '/' . Auth::id() . '/up')}}" class="btn btn-secondary">
+                                                        <a href="{{url('user/vote-tanya/' . $item->id . '/' . Auth::id() . '/up')}}" class="btn btn-primary">
                                                             <i class="fa fa-arrow-up"></i>
                                                         </a>
                                                     </div>
                                                     <div class="col-12 mt-3">
-                                                        <a href="#" class="btn btn-secondary">
+                                                        <a href="#" class="btn btn-primary">
                                                             <?php
                                                                 
                                                                 $up_vote = DB::table('vote_pertanyaan')->where(['pertanyaan_id'=>$item->id, 'up_down'=>true])
@@ -81,7 +81,7 @@
                                                     </div>
                                                     
                                                     <div class="col-12 mt-3">
-                                                        <a href="{{url('user/vote-tanya/' . $item->id . '/' . Auth::id() . '/down')}}" class="btn btn-secondary">
+                                                        <a href="{{url('user/vote-tanya/' . $item->id . '/' . Auth::id() . '/down')}}" class="btn btn-primary">
                                                             <i class="fa fa-arrow-down"></i>
                                                         </a>
                                                     </div>
@@ -111,7 +111,7 @@
                                                 <?php
                                                     $tag_name = Tag::find($tag_id->tag_id);
                                                 ?>
-                                                    <button type="button" class="btn btn-info">{{$tag_name->nama_tag}}</button>
+                                                    <button type="button" class="btn btn-info ">{{$tag_name->nama_tag}}</button>
                                                 
                                             @endforeach
                                             
@@ -127,8 +127,8 @@
                             <div class="paging" style="margin: 0 auto">
                                 {{ $data_tanya->links() }}
                             </div>
-                    </div>
-                </div>
+                    
+                
             </div>
         </div>
         </div>

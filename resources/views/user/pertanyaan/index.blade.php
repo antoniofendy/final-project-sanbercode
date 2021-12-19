@@ -43,7 +43,7 @@
                         @else
                             @foreach ($data_tanya as $item)
                             <div class="card mb-2">
-                                <div class="card-header bg-warning">
+                                <div class="card-header bg-secondary">
                                     <a href="{{url('/pertanyaan/'. $item->id. '/hapus')}}" style="float: right; display:inline;"><i class="fa fa-trash" aria-hidden="true"></i><b> Hapus</b></a>
                                     <a href="{{url('/pertanyaan/'. $item->id. '/edit')}}" class="mr-3" style="float: right; display:inline;"><i class="fa fa-pencil" aria-hidden="true"></i><b> Edit</b></a>
                                     <a href="{{url('/pertanyaan/'. $item->id. '/detail')}}" class="mr-3" style="float: right; display:inline;"><i class="fa fa-eye" aria-hidden="true"></i><b> Detail</b></a>

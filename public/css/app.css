@@ -1,3 +1,11 @@
+/*
+primary: dc3545
+primary hover: 8f222d
+secondary: eff1f3
+info: ffdb7e
+info hover: ffcb48
+*/
+
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 
 /*!
@@ -2829,21 +2837,21 @@ fieldset:disabled a.btn {
 
 .btn-info {
   color: #212529;
-  background-color: #6cb2eb;
-  border-color: #6cb2eb;
+  background-color: #ffdb7e;
+  border-color: #ffdb7e;
 }
 
 .btn-info:hover {
   color: #fff;
-  background-color: #4aa0e6;
-  border-color: #3f9ae5;
+  background-color: #ffcb48;
+  border-color: #ffcb48;
 }
 
 .btn-info:focus,
 .btn-info.focus {
   color: #fff;
-  background-color: #4aa0e6;
-  border-color: #3f9ae5;
+  background-color: #ffcb48;
+  border-color: #ffcb48;
   box-shadow: 0 0 0 0.2rem rgba(97, 157, 206, 0.5);
 }
 
@@ -5372,6 +5380,7 @@ a.badge:focus {
 }
 
 .badge-primary {
+  font-weight: 100;
   color: #fff;
   background-color: #dc3545;
 }
@@ -5379,7 +5388,7 @@ a.badge:focus {
 a.badge-primary:hover,
 a.badge-primary:focus {
   color: #fff;
-  background-color: #2176bd;
+  background-color: #8f222d;
 }
 
 a.badge-primary:focus,
