@@ -58,7 +58,7 @@
                     <hr class="divider my-4" />
                 </div>
                 <div class="col-lg-8 align-self-baseline">
-                    <p class="text-white-75 font-weight-light mb-5">Mulailah Mengoding Sebelum Mengoding Dilarang</p>
+                    <p class="text-white-75 font-weight-light mb-5">Mulailah Mengoding di Hari Ini</p>
                     <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Lebih lagi</a>
                 </div>
             </div>
