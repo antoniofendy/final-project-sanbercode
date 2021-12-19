@@ -38,7 +38,7 @@
                 style="box-shadow: 0 8px 30px -6px black">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <h3><span class="badge badge-primary">Stack Over Wow</span></h3>
+                        <h3><span class="badge badge-primary">Republik Kode</span></h3>
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
