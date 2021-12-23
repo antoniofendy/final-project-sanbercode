@@ -55,12 +55,12 @@
                                                 <div class="card-body">
                                                     <div class="row">
                                                         <div class="col-12">
-                                                            <a href="{{url('user/vote-tanya/' . $item->id . '/' . Auth::id() . '/up')}}" class="btn btn-secondary">
+                                                            <a href="{{url('user/vote-tanya/' . $item->id . '/' . Auth::id() . '/up')}}" class="btn btn-primary">
                                                                 <i class="fa fa-arrow-up"></i>
                                                             </a>
                                                         </div>
                                                         <div class="col-12 mt-3">
-                                                            <a href="#" class="btn btn-secondary">
+                                                            <a href="#" class="btn btn-primary">
                                                                 <?php
                                                                     
                                                                     $up_vote = DB::table('vote_pertanyaan')->where(['pertanyaan_id'=>$item->id, 'up_down'=>true])
@@ -75,7 +75,7 @@
                                                         </div>
                                                         
                                                         <div class="col-12 mt-3">
-                                                            <a href="{{url('user/vote-tanya/' . $item->id . '/' . Auth::id() . '/down')}}" class="btn btn-secondary">
+                                                            <a href="{{url('user/vote-tanya/' . $item->id . '/' . Auth::id() . '/down')}}" class="btn btn-primary">
                                                                 <i class="fa fa-arrow-down"></i>
                                                             </a>
                                                         </div>

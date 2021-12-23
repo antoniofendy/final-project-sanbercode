@@ -24,7 +24,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card main">
-                        <div class="card-header">Berikan Pertanyaan</div>
+                        <div class="card-header bg-primary text-white">Berikan Pertanyaan</div>
                         
                         <div class="card-body">
                             {{-- @if (session('status'))
@@ -50,7 +50,7 @@
                                     <input type="text" name="tag" class="form-control" placeholder="ex: javascript,laravel,..." size="20" required>
                                 </div>
                                 <div class="form-group text-center">
-                                    <button type="submit" class="btn btn-outline-primary">Buat Pertanyaan</button>
+                                    <button type="submit" class="btn btn-outline-success">Buat Pertanyaan</button>
                                 </div>
                             </form>
                             
