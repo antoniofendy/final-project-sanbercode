@@ -21,18 +21,34 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{asset('landing_page/css/styles.css')}}" rel="stylesheet" />
 
+    <script>
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 80) {
+            document.getElementById("mainNav").style.padding = "3rem 1rem";
+            document.getElementById("mainNav").style.backgroundColor = "rgba(0,0,0,0.3)";
+            document.getElementById("brand").style.fontSize = "1.25rem";
+        } else {
+            document.getElementById("mainNav").style.padding = "8rem 1rem";
+            document.getElementById("mainNav").style.backgroundColor = "rgba(0,0,0,0)";
+            document.getElementById("brand").style.fontSize = "1.75rem";
+            
+        }
+        } 
+    </script>
 </head>
 
 <body id="page-top">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
         <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="{{url('/')}}">Republik Kode</a>
+            <a id="brand" class="navbar-brand js-scroll-trigger" href="{{url('/')}}">Republik Kode</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                <ul id="nav-items" class="navbar-nav ml-auto my-2 my-lg-0">
                     @if (Route::has('login'))
                     @auth
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url('/home') }}">Home</a></li>
