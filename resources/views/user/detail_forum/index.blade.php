@@ -68,7 +68,7 @@
 
                         <!-- BAGIAN PERTANYAAN -->
                         <div class="card mb-2">
-                            <div class="card-header bg-warning">
+                            <div class="card-header bg-primary text-white">
                                 <p style="display: inline-block;">Pertanyaan dari : {{$data_user->name}}</p>
                                 @if ($data_tanya->user_id == Auth::id())
                                 <a href="{{url('/pertanyaan/'. $data_tanya->id. '/hapus')}}"
@@ -79,20 +79,20 @@
                                         aria-hidden="true"></i><b> Edit</b></a>
                                 @endif
                             </div>
-                            <div class="card-body">
+                            <div class="card-body  bg-secondary">
                                 <div class="row">
                                     <div class="col-md-2 col-sm-12 text-center">
-                                        <div class="card border-0">
+                                        <div class="card border-0 bg-secondary">
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <a href="{{url('user/vote-tanya/' . $data_tanya->id . '/' . Auth::id() . '/up')}}"
-                                                            class="btn btn-secondary">
-                                                            <i class="fa fa-sort-asc"></i>
+                                                            class="btn btn-primary">
+                                                            <i class="fa fa-arrow-up"></i>
                                                         </a>
                                                     </div>
                                                     <div class="col-12 mt-3">
-                                                        <a href="#" class="btn btn-secondary disabled">
+                                                        <a href="#" class="btn btn-primary">
                                                             <?php
                                                                      
                                                                     $up_vote = DB::table('vote_pertanyaan')->where(['pertanyaan_id'=>$data_tanya->id, 'up_down'=>true])
@@ -106,9 +106,8 @@
                                                         </a>
                                                     </div>
                                                     <div class="col-12 mt-3">
-                                                        <a href="{{url('user/vote-tanya/' . $data_tanya->id . '/' . Auth::id() . '/down')}}"
-                                                            class="btn btn-secondary">
-                                                            <i class="fa fa-sort-desc"></i>
+                                                        <a href="{{url('user/vote-tanya/' . $data_tanya->id . '/' . Auth::id() . '/down')}}" class="btn btn-primary">
+                                                            <i class="fa fa-arrow-down"></i>
                                                         </a>
                                                     </div>
                                                 </div>
@@ -162,10 +161,10 @@
                                 ?>
 
                         <div class="card mb-2 ml-5">
-                            <div class="card-header bg-success">
+                            <div class="card-header bg-primary text-white">
                                 Komentar dari : {{$user->name}}
                             </div>
-                            <div class="card-body">
+                            <div class="card-body bg-secondary">
                                 <div class="row">
                                     <div class="col-md-10 col-sm-12">
                                         <span class="badge badge-pill badge-primary">
@@ -193,7 +192,7 @@
                                     ?>
 
                         <div class="card mb-2">
-                            <div class="card-header bg-info">
+                            <div class="card-header bg-primary text-white">
                                 <p style="display: inline-block;" class="">Jawaban dari : {{$user->name}}</p>
                                 @if ($item->user_id == Auth::id())
                                 <a href="{{url('/hapus-jawaban/'. $item->id)}}"
@@ -212,12 +211,12 @@
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <a href="{{url('user/vote-jawab/' . $item->id . '/' . Auth::id() . '/up')}}"
-                                                            class="btn btn-secondary">
-                                                            <i class="fa fa-sort-asc"></i>
+                                                            class="btn btn-primary">
+                                                            <i class="fa fa-arrow-up"></i>
                                                         </a>
                                                     </div>
                                                     <div class="col-12 mt-3">
-                                                        <a href="#" class="btn btn-secondary disabled">
+                                                        <a href="#" class="btn btn-primary">
                                                             <?php
                                                                     
                                                                     $up_vote = DB::table('vote_jawaban')->where(['jawaban_id'=>$item->id, 'up_down'=>true])
@@ -231,8 +230,8 @@
                                                     </div>
                                                     <div class="col-12 mt-3">
                                                         <a href="{{url('user/vote-jawab/' . $item->id . '/' . Auth::id() . '/down')}}"
-                                                            class="btn btn-secondary">
-                                                            <i class="fa fa-sort-desc"></i>
+                                                            class="btn btn-primary">
+                                                            <i class="fa fa-arrow-down"></i>
                                                         </a>
                                                     </div>
                                                 </div>

@@ -63,10 +63,10 @@
                         </div>
                         @endif --}}
                         <div class="card mb-2">
-                            <div class="card-header bg-warning">
+                            <div class=" card-header bg-primary text-white">
                                 Dari : {{$data_user->name}}
                             </div>
-                            <div class="card-body">
+                            <div class="card-body bg-secondary">
                                 <div class="row">
                                     <div class="col-md-10 col-sm-12">
                                         <h5 class="card-title" style="font-weight: bold">{{$data_tanya->judul}}</h5>
@@ -98,7 +98,7 @@
             </div>
         </div>
         <div class="card mt-2">
-            <div class="card-header bg-info">
+            <div class="card-header bg-primary text-white">
                 Komentar Kamu
             </div>
             <div class="card-body">
@@ -114,7 +114,7 @@
                             class="form-control my-editor">{!! old('isi', $isi ?? '') !!}</textarea>
                     </div>
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-outline-primary">Submit komentar</button>
+                        <button type="submit" class="btn btn-outline-success">Submit komentar</button>
                     </div>
                 </form>
             </div>
