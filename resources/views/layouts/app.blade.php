@@ -32,9 +32,9 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-secondary shadow-sm sticky-top"
             style="box-shadow: 0 8px 30px -6px black">
-            <div class="container">
+            <div class="container d-flex">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <h3><span class="badge badge-primary">Republik Kode</span></h3>
+                    <h3 class="mb-0"><span class="badge badge-primary">Republik Kode</span></h3>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -45,7 +45,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     @if (Auth::check())
-                    <ul class="navbar-nav mb-2">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('/home')}}">Home</a>
                         </li>
@@ -63,17 +63,18 @@
                                     Saya</a>
                             </div>
                         </li>
-                        <form class="form-inline" method="post" action="{{url('/search')}}">
-                            @csrf
-                            <input class="form-control mr-sm-2" type="search" placeholder="Cari Topik"
-                                aria-label="Search" name="keyword">
-                            <button class="btn btn-primary my-2 my-sm-0" type="submit">Cari</button>
-                        </form>
                     </ul>
+
+                    <form class="form-inline mb-0 mx-0 mx-md-2 d-flex flex-row w-100" method="post" action="{{url('/search')}}">
+                        @csrf
+                        <input class="form-control mr-sm-2 flex-fill" type="search" placeholder="Cari Topik"
+                            aria-label="Search" name="keyword">
+                        <button class="btn btn-primary my-2 my-sm-0" type="submit">Cari</button>
+                    </form>
                     @endif
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto mb-2">
+                    <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
