@@ -32,7 +32,7 @@
     <div class="col-md-8 mb-2">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                
+
                 <div class="h3 mb-3">Pertanyaan Anda</div>
 
                 {{-- @if (session('status'))
@@ -49,13 +49,13 @@
                     <div class="card-header bg-primary">
                         <a href="{{url('/pertanyaan/'. $item->id. '/hapus')}}"
                             style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-trash"
-                                aria-hidden="true"></i><b> Hapus</b></a>
+                                aria-hidden="true"></i> Hapus</a>
                         <a href="{{url('/pertanyaan/'. $item->id. '/edit')}}" class="mr-3"
                             style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-pencil"
-                                aria-hidden="true"></i><b> Edit</b></a>
+                                aria-hidden="true"></i> Edit</a>
                         <a href="{{url('/pertanyaan/'. $item->id. '/detail')}}" class="mr-3"
                             style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-eye"
-                                aria-hidden="true"></i><b> Detail</b></a>
+                                aria-hidden="true"></i> Detail</a>
                     </div>
                     <div class="card-body bg-secondary">
                         <div class="row">
@@ -132,12 +132,12 @@
     </div>
 
     <div class="col-md-2 mb-2">
-            <div class="card main">
-                <div class="card-body">
-                    @include('layouts.partials.rightbar')
-                </div>
+        <div class="card main">
+            <div class="card-body">
+                @include('layouts.partials.rightbar')
             </div>
         </div>
+    </div>
 </div>
 
 

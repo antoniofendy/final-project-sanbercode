@@ -1,11 +1,10 @@
-
-
 <?php 
 
     use Illuminate\Support\Facades\Auth;
     $user = Auth::user(); 
 
 ?>
+
 <h3 class="card-title">{{$user->name}}</h3>
 <hr>
 <h6 class="card-subtitle mb-2 text-muted"></h6>
