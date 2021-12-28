@@ -108,10 +108,10 @@
                                                 ?>
                                             @foreach ($tag as $tag_id)
                                             <?php
-                                                        $tag_name = Tag::find($tag_id->tag_id);
-                                                    ?>
-                                            <button type="button" class="btn btn-info">{{$tag_name->nama_tag}}</button>
-
+                                                    $tag_name = Tag::find($tag_id->tag_id);
+                                            ?>
+                                            <a href="{{url('/search/'.trim($tag_name->nama_tag))}}"
+                                                class="btn btn-info">{{$tag_name->nama_tag}}</a>
                                             @endforeach
 
                                         </div>

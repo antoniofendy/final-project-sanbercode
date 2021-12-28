@@ -21,62 +21,65 @@
     </div>
 
     <div class="col-md-8 mb-2">
-            <div class="row justify-content-center">
-                <div class="col-md-12">
-                    <div class="card main">
-                        <div class="card-header bg-primary text-white">Berikan Pertanyaan</div>
-                        
-                        <div class="card-body">
-                            {{-- @if (session('status'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('status') }}
-                                </div>
-                            @endif --}}
-                            <form method="post" action="{{url('/user/pertanyaan/buat')}}">
-                                @csrf
-                                <input type="hidden" name="created_at" value="{{$current_date_time}}">
-                                <input type="hidden" name="updated_at" value="{{$current_date_time}}">
-                                <input type="hidden" name="user_id" value="{{Auth::id()}}">
-                                <div class="form-group">
-                                    <label for="judul"><b>Judul Pertanyaan</b></label>
-                                    <input type="text" name="judul" class="form-control" placeholder="ex: Cara menggunakan Laravel" size="20" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="isi"><b>Isi Pertanyaan</b></label>
-                                    <textarea name="isi" class="form-control my-editor">{!! old('isi', $isi ?? '') !!}</textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="judul"><b>Tag</b></label>
-                                    <input type="text" name="tag" class="form-control" placeholder="ex: javascript,laravel,..." size="20" required>
-                                </div>
-                                <div class="form-group text-center">
-                                    <button type="submit" class="btn btn-outline-success">Buat Pertanyaan</button>
-                                </div>
-                            </form>
-                            
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card main">
+                    <div class="card-header bg-primary text-white">Berikan Pertanyaan</div>
+
+                    <div class="card-body">
+                        {{-- @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
                         </div>
+                        @endif --}}
+                        <form method="post" action="{{url('/user/pertanyaan/buat')}}">
+                            @csrf
+                            <input type="hidden" name="created_at" value="{{$current_date_time}}">
+                            <input type="hidden" name="updated_at" value="{{$current_date_time}}">
+                            <input type="hidden" name="user_id" value="{{Auth::id()}}">
+                            <div class="form-group">
+                                <label for="judul"><b>Judul Pertanyaan</b></label>
+                                <input type="text" name="judul" class="form-control"
+                                    placeholder="ex: Cara menggunakan Laravel" size="20" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="isi"><b>Isi Pertanyaan</b></label>
+                                <textarea name="isi"
+                                    class="form-control my-editor">{!! old('isi', $isi ?? '') !!}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="judul"><b>Tag</b></label>
+                                <input type="text" name="tag" class="form-control"
+                                    placeholder="ex: javascript,laravel,..." size="20" required>
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-outline-success">Buat Pertanyaan</button>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="col-md-2 mb-2">
-            <div class="card main">
-                <div class="card-body">
-                    @include('layouts.partials.rightbar')
-                </div>
+    <div class="col-md-2 mb-2">
+        <div class="card main">
+            <div class="card-body">
+                @include('layouts.partials.rightbar')
             </div>
         </div>
+    </div>
 
 </div>
 
-    
+
 
 
 @endsection
 
 @push('scripts')
-    
+
 <script>
     var editor_config = {
     path_absolute : "/",
