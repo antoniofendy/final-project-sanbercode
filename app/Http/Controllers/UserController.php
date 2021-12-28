@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Contracts\Auth\CanResetPassword;
 
 use \App\Pertanyaan;
 use \App\Tag;
@@ -21,15 +23,59 @@ include('ForumController.php');
 
 class UserController extends Controller
 {
-    public function index($user_id) // comment
+    public function index() // comment
     {
-        $data = User::find($user_id);
+        $data = User::find(Auth::id());
         return view('user.profil.index', compact('data'));
     }
 
     public function update(Request $request) // comment
     {
-        dd($request);
+        $user = User::find(Auth::id());
+        // JIKA PENGGUNA TIDAK MENGUBAH PASSWORD
+        if(empty($request->old_password))
+        {
+            $user->update([
+                "name" => $request->name,
+                "email" => $request->email,
+                "telepon" => $request->telepon,
+                "alamat" => $request->alamat
+            ]);
+
+            Alert::success('Berhasil', 'Berhasil memperbarui data profil');
+            $user = User::find(Auth::id());
+            return redirect('/profil');
+        }
+        // JIKA PENGGUNA MENGUBAH PASSWORD
+        else
+        {
+            if(Hash::check($request->old_password, $user->password))
+            {
+                // JIKA PASSWORD BARU DAN PASSWORD KONFIRMASI SAMA
+                if($request->new_password == $request->confirm_password)
+                {
+                    $user->update([
+                        "name" => $request->name,
+                        "email" => $request->email,
+                        "password" => Hash::make($request->new_password),
+                        "telepon" => $request->telepon,
+                        "alamat" => $request->alamat
+                    ]);
+
+                    Alert::success('Berhasil', 'Berhasil memperbarui data profil');
+                    $user = User::find(Auth::id());
+                    return redirect('/profil');
+                }
+                // JIKA PASSWORD BARU DAN PASSWORD KONFIRMASI BERBEDA
+                else
+                {
+                    Alert::error('Gagal', 'Password baru dengan password konfirmasi berbeda');
+                    return redirect('/profil');
+                }
+            }
+            Alert::error('Gagal', 'Password lama tidak sesuai');
+            return redirect('/profil');
+        }
     }
     
     public function buat_komen() // comment

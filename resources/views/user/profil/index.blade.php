@@ -35,7 +35,7 @@
             <div class="col-md-12">
 
                 <div class="h3 mb-3">Profil Anda</div>
-                <form method="POST" action="{{url('/profil/' . Auth::id(). '/update')}}">
+                <form method="POST" action="{{url('/profil/update')}}">
                     @csrf
                     <?php 
                         date_default_timezone_set('Asia/Jakarta');
