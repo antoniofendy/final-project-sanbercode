@@ -30,8 +30,6 @@ class UserController extends Controller
         return view('user.komentar.hal');
     }
 
-    
-
     public function vote_tanya(Request $request, $pertanyaan_id, $user_id, $vote){
 
         $cek_vote = Vote_Pertanyaan::where(['pertanyaan_id' => $pertanyaan_id,'user_id'=>$user_id])->first();

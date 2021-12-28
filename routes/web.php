@@ -36,6 +36,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/search', 'HomeController@search');
     Route::get('/search/{keyword}', 'HomeController@searchpaginate');
 
+    // route CRUD PROFIL
+    
+
     //route untuk list pertanyaan user
     Route::get('/pertanyaan/{user_id}', 'PertanyaanController@list_pertanyaan');
 
