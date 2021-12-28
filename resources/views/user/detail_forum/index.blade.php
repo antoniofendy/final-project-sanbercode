@@ -56,10 +56,7 @@
     <div class="col-md-8 mb-2">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="card main">
-                    <div class="card-header"></div>
-
-                    <div class="card-body">
+                
                         {{-- @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -72,11 +69,19 @@
                                 <p style="display: inline-block;">Pertanyaan dari : {{$data_user->name}}</p>
                                 @if ($data_tanya->user_id == Auth::id())
                                 <a href="{{url('/pertanyaan/'. $data_tanya->id. '/hapus')}}"
+<<<<<<< Updated upstream
                                     style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-trash"
                                         aria-hidden="true"></i> Hapus</a>
                                 <a href="{{url('/pertanyaan/'. $data_tanya->id. '/edit')}}" class="mr-3"
                                     style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-pencil"
                                         aria-hidden="true"></i> Edit</a>
+=======
+                                    style="float: right; display:inline; color:white;"><i class="fa fa-trash"
+                                        aria-hidden="true"></i><b> Hapus</b></a>
+                                <a href="{{url('/pertanyaan/'. $data_tanya->id. '/edit')}}" class="mr-3"
+                                    style="float: right; display:inline; color:white;"><i class="fa fa-pencil"
+                                        aria-hidden="true"></i><b> Edit</b></a>
+>>>>>>> Stashed changes
                                 @endif
                             </div>
                             <div class="card-body  bg-secondary">
@@ -304,8 +309,8 @@
                         @endforeach
 
                         <!-- Bagian akhir jawaban -->
-                    </div>
-                </div>
+                    
+                
             </div>
         </div>
     </div>

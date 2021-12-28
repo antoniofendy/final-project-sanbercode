@@ -15,6 +15,15 @@
     .card.main {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
+<<<<<<< Updated upstream
+=======
+
+    .pagination{
+        margin: 0 auto;
+        
+    }
+
+>>>>>>> Stashed changes
 </style>
 
 @section('content')
@@ -27,9 +36,9 @@
     <div class="col-md-8 mb-2">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="card main">
-                    <div class="card-header">Pertanyaan Anda</div>
-                    <div class="card-body">
+               
+                    <div class="h3 mb-3">Pertanyaan Anda</div>
+                    
                         {{-- @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -39,6 +48,7 @@
                         @if (empty(end($data_tanya)))
                         <p class="card-text">Maaf, anda belum memiliki pertanyaan</p>
                         @else
+<<<<<<< Updated upstream
                         @foreach ($data_tanya as $item)
                         <div class="card mb-2">
                             <div class="card-header bg-warning">
@@ -67,6 +77,30 @@
                                                     <div class="col-12 mt-3">
                                                         <a href="#" class="btn btn-primary">
                                                             <?php
+=======
+                            @foreach ($data_tanya as $item)
+                            <div class="card mb-2">
+                                <div class="card-header bg-primary">
+                                    <a href="{{url('/pertanyaan/'. $item->id. '/hapus')}}" style="float: right; display:inline; color:white;"><i class="fa fa-trash" aria-hidden="true"></i><b> Hapus</b></a>
+                                    <a href="{{url('/pertanyaan/'. $item->id. '/edit')}}" class="mr-3" style="float: right; display:inline; color:white;"><i class="fa fa-pencil" aria-hidden="true"></i><b> Edit</b></a>
+                                    <a href="{{url('/pertanyaan/'. $item->id. '/detail')}}" class="mr-3" style="float: right; display:inline; color:white;"><i class="fa fa-eye" aria-hidden="true"></i><b> Detail</b></a>
+                                </div>
+
+                                <div class="card-body bg-secondary">
+                                    <div class="row">
+                                        <div class="col-md-2 col-sm-12 text-center">
+                                            <div class="card border-0 bg-secondary">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <a href="{{url('user/vote-tanya/' . $item->id . '/' . Auth::id() . '/up')}}" class="btn btn-primary">
+                                                                <i class="fa fa-arrow-up"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-12 mt-3">
+                                                            <a href="#" class="btn btn-primary">
+                                                                <?php
+>>>>>>> Stashed changes
                                                                     
                                                                     $up_vote = DB::table('vote_pertanyaan')->where(['pertanyaan_id'=>$item->id, 'up_down'=>true])
                                                                             ->count();
@@ -119,6 +153,7 @@
 
                                 </div>
                             </div>
+<<<<<<< Updated upstream
                         </div>
                         @endforeach
                         @endif
@@ -137,6 +172,21 @@
         </div>
     </div>
 
+=======
+                            @endforeach
+                        @endif           
+            </div>
+        </div>
+    </div>
+        
+        <div class="col-md-2 mb-2">
+            <div class="card main">
+                <div class="card-body card-top-left">
+                    @include('layouts.partials.rightbar')
+                </div>
+            </div>
+        </div>
+>>>>>>> Stashed changes
 </div>
 
 @endsection
