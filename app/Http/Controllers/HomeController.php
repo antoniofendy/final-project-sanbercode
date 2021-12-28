@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use \App\Pertanyaan;
 use \App\User;
 
+use RealRashid\SweetAlert\Facades\Alert;
+
 class HomeController extends Controller
 {
     /**
@@ -34,16 +36,23 @@ class HomeController extends Controller
     // FUNCTION UNTUK PENCARIAN DAN PAGINATION PENCARIAN HALAMAN SATU KE HALAMAN DUA DST
     public function search(Request $request)
     {
-        $hasil_pencarian = Pertanyaan::where([
-            ["judul", "like", "%" . $request->keyword . "%"],
-            ["isi", "like", "%" . $request->keyword . "%"]
-        ])->paginate(5);
-        
-        $hasil_pencarian->withPath('search/' . $request->keyword);
+        if (empty(trim($request->keyword))) {
+            Alert::warning('Pencarian Gagal', 'Anda belum memasukan kata kunci');
 
-        $data_pencarian = [$request->keyword, $hasil_pencarian];
-
-        return view('search', compact('data_pencarian', 'data_pencarian'));
+            return redirect('/home');
+        }
+        else {
+            $hasil_pencarian = Pertanyaan::where([
+                ["judul", "like", "%" . $request->keyword . "%"],
+                ["isi", "like", "%" . $request->keyword . "%"]
+            ])->paginate(5);
+            
+            $hasil_pencarian->withPath('search/' . $request->keyword);
+    
+            $data_pencarian = [$request->keyword, $hasil_pencarian];
+    
+            return view('search', compact('data_pencarian', 'data_pencarian'));
+        }
     }
 
     // FUNCTION UNTUK PENCARIAN DAN PAGINATION PENCARIAN DARI HALAMAN DUA DST KE HALAMAN SATU
