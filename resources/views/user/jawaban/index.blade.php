@@ -86,6 +86,7 @@
                                             <span class="badge badge-pill badge-primary">
                                                 {{$item->created_at->diffForHumans()}}
                                             </span>
+                                            <hr>
                                             <p class="card-text">{!!$item->description!!}</p>  
                                         </div>
 

@@ -119,6 +119,7 @@
                                 <span class="badge badge-pill badge-primary">
                                     Updated : {{$data_tanya->updated_at->diffForHumans()}}
                                 </span>
+                                <hr>
                                 <p p class="card-text">{!!$data_tanya->isi!!}</p>
                                 <div class="tag">
                                     <?php

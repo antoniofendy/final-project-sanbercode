@@ -15,6 +15,11 @@
     .card.main {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
+
+    .pagination {
+        margin: 0 auto;
+
+    }
 </style>
 
 @section('content')
@@ -27,6 +32,7 @@
     <div class="col-md-8 mb-2">
         <div class="row justify-content-center">
             <div class="col-md-12">
+                
                 <div class="h3 mb-3">Pertanyaan Anda</div>
 
                 {{-- @if (session('status'))
@@ -40,7 +46,7 @@
                 @else
                 @foreach ($data_tanya as $item)
                 <div class="card mb-2">
-                    <div class="card-header bg-warning">
+                    <div class="card-header bg-primary">
                         <a href="{{url('/pertanyaan/'. $item->id. '/hapus')}}"
                             style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-trash"
                                 aria-hidden="true"></i><b> Hapus</b></a>
@@ -51,10 +57,10 @@
                             style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-eye"
                                 aria-hidden="true"></i><b> Detail</b></a>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body bg-secondary">
                         <div class="row">
                             <div class="col-md-2 col-sm-12 text-center">
-                                <div class="card border-0">
+                                <div class="card border-0 bg-secondary">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-12">
@@ -97,18 +103,17 @@
                                 <span class="badge badge-pill badge-primary">
                                     Updated : {{$item->updated_at->diffForHumans()}}
                                 </span>
+                                <hr>
                                 <p p class="card-text">{!!$item->isi!!}</p>
                                 <div class="tag">
                                     <?php
                                                     
-                                                    $tag = Pertanyaan_Tag::where('pertanyaan_id', $item->id)
-                                                                            ->get();
-                                                                            
-                                                ?>
+                                        $tag = Pertanyaan_Tag::where('pertanyaan_id', $item->id)->get();
+                                    ?>
                                     @foreach ($tag as $tag_id)
                                     <?php
-                                                    $tag_name = Tag::find($tag_id->tag_id);
-                                            ?>
+                                        $tag_name = Tag::find($tag_id->tag_id);
+                                    ?>
                                     <a href="{{url('/search/'.trim($tag_name->nama_tag))}}"
                                         class="btn btn-info">{{$tag_name->nama_tag}}</a>
                                     @endforeach
@@ -125,17 +130,17 @@
             </div>
         </div>
     </div>
-</div>
-</div>
 
-<div class="col-md-2 mb-2">
-    <div class="card main">
-        <div class="card-body">
-            @include('layouts.partials.rightbar')
+    <div class="col-md-2 mb-2">
+            <div class="card main">
+                <div class="card-body">
+                    @include('layouts.partials.rightbar')
+                </div>
+            </div>
         </div>
-    </div>
 </div>
 
-</div>
+
+
 
 @endsection
