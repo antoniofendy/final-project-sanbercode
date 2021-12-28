@@ -72,11 +72,11 @@
                                 <p style="display: inline-block;">Pertanyaan dari : {{$data_user->name}}</p>
                                 @if ($data_tanya->user_id == Auth::id())
                                 <a href="{{url('/pertanyaan/'. $data_tanya->id. '/hapus')}}"
-                                    style="float: right; display:inline;"><i class="fa fa-trash"
-                                        aria-hidden="true"></i><b> Hapus</b></a>
+                                    style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-trash"
+                                        aria-hidden="true"></i> Hapus</a>
                                 <a href="{{url('/pertanyaan/'. $data_tanya->id. '/edit')}}" class="mr-3"
-                                    style="float: right; display:inline;"><i class="fa fa-pencil"
-                                        aria-hidden="true"></i><b> Edit</b></a>
+                                    style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-pencil"
+                                        aria-hidden="true"></i> Edit</a>
                                 @endif
                             </div>
                             <div class="card-body  bg-secondary">
@@ -106,7 +106,8 @@
                                                         </a>
                                                     </div>
                                                     <div class="col-12 mt-3">
-                                                        <a href="{{url('user/vote-tanya/' . $data_tanya->id . '/' . Auth::id() . '/down')}}" class="btn btn-primary">
+                                                        <a href="{{url('user/vote-tanya/' . $data_tanya->id . '/' . Auth::id() . '/down')}}"
+                                                            class="btn btn-primary">
                                                             <i class="fa fa-arrow-down"></i>
                                                         </a>
                                                     </div>
@@ -188,8 +189,8 @@
                         @foreach ($data_jawab as $item)
 
                         <?php
-                                        $user = User::find($item->user_id);
-                                    ?>
+                            $user = User::find($item->user_id);
+                        ?>
 
                         <div class="card mb-2">
                             <div class="card-header bg-primary text-white">
@@ -218,14 +219,13 @@
                                                     <div class="col-12 mt-3">
                                                         <a href="#" class="btn btn-primary">
                                                             <?php
-                                                                    
-                                                                    $up_vote = DB::table('vote_jawaban')->where(['jawaban_id'=>$item->id, 'up_down'=>true])
-                                                                            ->count();
-                                                                    $down_vote = DB::table('vote_jawaban')->where(['jawaban_id'=>$item->id, 'up_down'=>false])
-                                                                            ->count();
-                                                                            
-                                                                    echo $up_vote - $down_vote;
-                                                                ?>
+                                                                $up_vote = DB::table('vote_jawaban')->where(['jawaban_id'=>$item->id, 'up_down'=>true])
+                                                                        ->count();
+                                                                $down_vote = DB::table('vote_jawaban')->where(['jawaban_id'=>$item->id, 'up_down'=>false])
+                                                                        ->count();
+                                                                        
+                                                                echo $up_vote - $down_vote;
+                                                            ?>
                                                         </a>
                                                     </div>
                                                     <div class="col-12 mt-3">
