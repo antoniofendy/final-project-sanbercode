@@ -41,7 +41,6 @@
                         date_default_timezone_set('Asia/Jakarta');
                         $time = date('Y-m-d H:i:s');
                     ?>
-                    <input type="hidden" name="created_at" value="{{$time}}">
                     <input type="hidden" name="updated_at" value="{{$time}}">
                     <div class="form-group row">
                         <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
