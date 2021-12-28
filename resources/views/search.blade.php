@@ -46,10 +46,10 @@
                                 Dari : {{$nama_user}}
                             </div>
 
-                            <div class="card-body bg-warning">
+                            <div class="card-body bg-secondary">
                                 <div class="row">
                                     <div class="col-md-2 col-sm-12 text-center">
-                                        <div class="card border-0 bg-warning">
+                                        <div class="card border-0 bg-secondary">
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-12">
