@@ -34,97 +34,109 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
 
-                <div class="h3 mb-3">Topik Terbaru</div>
+                <div class="h3 mb-3">Profil Anda</div>
+                <form method="POST" action="{{url('/profil/' . Auth::id(). '/update')}}">
+                    @csrf
+                    <?php 
+                        date_default_timezone_set('Asia/Jakarta');
+                        $time = date('Y-m-d H:i:s');
+                    ?>
+                    <input type="hidden" name="created_at" value="{{$time}}">
+                    <input type="hidden" name="updated_at" value="{{$time}}">
+                    <div class="form-group row">
+                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
-                {{-- @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
-                </div>
-                @endif --}}
+                        <div class="col-md-6">
+                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                                name="name" value="{{ $data['name'] }}" required autocomplete="name" autofocus>
 
-                @foreach ($data_tanya as $item)
-                <div class="card mb-2">
-                    <?php
-                                $nama = User::find($item->user_id);
-                                $nama_user = $nama->name;
-                            ?>
-                    <div class="card-header bg-primary text-white">
-                        Dari : {{$nama_user}}
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
                     </div>
 
-                    <div class="card-body bg-secondary">
-                        <div class="row">
-                            <div class="col-md-2 col-sm-12 text-center">
-                                <div class="card border-0 bg-secondary">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <a href="{{url('user/vote-tanya/' . $item->id . '/' . Auth::id() . '/up')}}"
-                                                    class="btn btn-primary">
-                                                    <i class="fa fa-arrow-up"></i>
-                                                </a>
-                                            </div>
-                                            <div class="col-12 mt-3">
-                                                <a href="#" class="btn btn-primary">
-                                                    <?php
-                                                                
-                                                                $up_vote = DB::table('vote_pertanyaan')->where(['pertanyaan_id'=>$item->id, 'up_down'=>true])
-                                                                        ->count();
-                                                                $down_vote = DB::table('vote_pertanyaan')->where(['pertanyaan_id'=>$item->id, 'up_down'=>false])
-                                                                        ->count();
-                                                                        
-                                                                echo $up_vote - $down_vote;
+                    <div class="form-group row">
+                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address')
+                            }}</label>
 
-                                                            ?>
-                                                </a>
-                                            </div>
+                        <div class="col-md-6">
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                name="email" value="{{ $data['email'] }}" required autocomplete="email">
 
-                                            <div class="col-12 mt-3">
-                                                <a href="{{url('user/vote-tanya/' . $item->id . '/' . Auth::id() . '/down')}}"
-                                                    class="btn btn-primary">
-                                                    <i class="fa fa-arrow-down"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
 
-                            <div class="col-md-10 col-sm-12">
-                                <h5 class="card-title" style="font-weight: bold">{{$item->judul}}</h5>
-                                <span class="badge badge-pill badge-primary">
-                                    Created : {{$item->created_at->diffForHumans()}}
-                                </span>
-                                <span class="badge badge-pill badge-primary">
-                                    Updated : {{$item->updated_at->diffForHumans()}}
-                                </span>
-                                <hr>
-                                <p p class="card-text">{!!$item->isi!!}</p>
-                                <div class="tag">
-                                    <?php
-                                        $tag = Pertanyaan_Tag::where('pertanyaan_id', $item->id)->get();
-                                    ?>
-                                    @foreach ($tag as $tag_id)
-                                    <?php
-                                            $tag_name = Tag::find($tag_id->tag_id);
-                                    ?>
-                                    <a href="{{url('/search/'.trim($tag_name->nama_tag))}}"
-                                        class="btn btn-info">{{$tag_name->nama_tag}}</a>
-                                    @endforeach
+                    <div class="form-group row">
+                        <label for="old-password" class="col-md-4 col-form-label text-md-right">{{ __('Password')
+                            }}</label>
 
-                                </div>
-                            </div>
+                        <div class="col-md-6">
+                            <input id="old-password" type="password"
+                                class="form-control @error('password') is-invalid @enderror" name="old_password">
 
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="new-password" class="col-md-4 col-form-label text-md-right">{{ __('New
+                            Password') }}</label>
+
+                        <div class="col-md-6">
+                            <input id="new-password" type="password" class="form-control" name="new_password">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="confirm-password" class="col-md-4 col-form-label text-md-right">{{ __('Confirm
+                            Password') }}</label>
+
+                        <div class="col-md-6">
+                            <input id="confirm-password" type="password" class="form-control" name="confirm_password">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="telepon" class="col-md-4 col-form-label text-md-right">Phone</label>
+
+                        <div class="col-md-6">
+                            <input id="telepon" type="number" class="form-control" name="telepon"
+                                value="{{$data['telepon']}}" required>
                         </div>
 
-                        <a href="{{url('/pertanyaan/'. $item->id. '/detail')}}" class="btn btn-success mt-3"
-                            style="float: right"><i class="fa fa-eye"></i> Detail</a>
                     </div>
-                </div>
-                @endforeach
-                <div class="paging" style="margin: 0 auto">
-                    {{ $data_tanya->links() }}
-                </div>
+
+                    <div class="form-group row">
+                        <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Address</label>
+
+                        <div class="col-md-6">
+                            <textarea name="alamat" class="form-control" cols="30" rows="5"
+                                required>{{$data['alamat']}}</textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row mb-0">
+                        <div class="col-md-6 offset-md-4">
+                            <button type="submit" class="btn btn-primary">
+                                {{ __('Update') }}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>

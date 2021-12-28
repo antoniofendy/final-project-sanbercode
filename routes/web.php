@@ -37,7 +37,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/search/{keyword}', 'HomeController@searchpaginate');
 
     // route CRUD PROFIL
-    
+    Route::get('/profil/{user_id}', 'UserController@index');
+    Route::post('/profil/{user_id}/update', 'UserController@update');
 
     //route untuk list pertanyaan user
     Route::get('/pertanyaan/{user_id}', 'PertanyaanController@list_pertanyaan');

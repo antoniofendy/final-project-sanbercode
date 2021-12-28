@@ -21,10 +21,22 @@ include('ForumController.php');
 
 class UserController extends Controller
 {
+    public function index($user_id) // comment
+    {
+        $data = User::find($user_id);
+        return view('user.profil.index', compact('data'));
+    }
+
+    public function update(Request $request) // comment
+    {
+        dd($request);
+    }
+    
     public function buat_komen() // comment
     {
         return view('user.komentar.comment');
     }
+
     public function buat_komen1() // ke hal comment
     {
         return view('user.komentar.hal');
