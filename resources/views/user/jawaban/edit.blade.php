@@ -24,7 +24,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card main">
-                        <div class="card-header">Edit Jawaban</div>
+                        <div class="card-header bg-primary text-white">Edit Jawaban</div>
                         {{-- {{dd($data_jawab->created_at)}} --}}
                         <div class="card-body">
                             {{-- @if (session('status'))
