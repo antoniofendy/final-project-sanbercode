@@ -29,9 +29,9 @@
     <div class="col-md-8 mb-2">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="card main">
-                    <div class="card-header">Jawaban Anda</div>
-                    <div class="card-body">
+                
+                    <div class="h3 mb-3">Jawaban Anda</div>
+                    
                         {{-- @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
@@ -43,15 +43,15 @@
                         @else
                             @foreach ($data_jawab as $item)
                             <div class="card mb-2">
-                                <div class="card-header bg-info">
+                                <div class="card-header bg-primary">
                                     <a href="{{url('/hapus-jawaban/'. $item->id)}}" style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-trash" aria-hidden="true"></i> Hapus</a>
                                     <a href="{{url('/edit-jawaban/'. $item->id)}}" class="mr-3" style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
                                     <a href="{{url('/pertanyaan/'. $item->pertanyaan_id. '/detail')}}" class="mr-3" style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-eye" aria-hidden="true"></i> Detail</a>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body bg-secondary">
                                     <div class="row">
                                         <div class="col-md-2 col-sm-12 text-center">
-                                            <div class="card border-0">
+                                            <div class="card border-0 bg-secondary">
                                                 <div class="card-body">
                                                     <div class="row">
                                                         <div class="col-12">
@@ -95,8 +95,6 @@
                             @endforeach
                         @endif
                         
-                    </div>
-                </div>
             </div>
         </div>
         </div>

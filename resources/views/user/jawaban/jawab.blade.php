@@ -53,33 +53,30 @@
     <div class="col-md-8 mb-2">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="card main">
-                    <div class="card-header"></div>
-
-                    <div class="card-body">
+                
                         {{-- @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                         @endif --}}
                         <div class="card mb-2">
-                            <div class="card-header bg-warning">
+                            <div class="card-header bg-primary text-white">
                                 Dari : {{$data_user->name}}
                             </div>
-                            <div class="card-body">
+                            <div class="card-body bg-secondary">
                                 <div class="row">
                                     <div class="col-md-2 col-sm-12 text-center">
-                                        <div class="card border-0">
+                                        <div class="card border-0 bg-secondary">
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <a href="{{url('user/vote-tanya/' . $data_tanya->id . '/' . Auth::id() . '/up')}}"
-                                                            class="btn btn-secondary">
+                                                            class="btn btn-primary">
                                                             <i class="fa fa-arrow-up"></i>
                                                         </a>
                                                     </div>
                                                     <div class="col-12 mt-3">
-                                                        <a href="#" class="btn btn-secondary">
+                                                        <a href="#" class="btn btn-primary">
                                                             <?php
                                                                     
                                                                     $up_vote = DB::table('vote_pertanyaan')->where(['pertanyaan_id'=>$data_tanya->id, 'up_down'=>true])
@@ -94,7 +91,7 @@
                                                     </div>
                                                     <div class="col-12 mt-3">
                                                         <a href="{{url('user/vote-tanya/' . $data_tanya->id . '/' . Auth::id() . '/down')}}"
-                                                            class="btn btn-secondary">
+                                                            class="btn btn-primary">
                                                             <i class="fa fa-arrow-down"></i>
                                                         </a>
                                                     </div>
@@ -129,21 +126,14 @@
                                     </div>
                                 </div>
 
-                                <a href="{{url('/jawab/'. $data_tanya->id)}}" class="btn btn-success mt-3 mr-2"
-                                    style="float: right"><i class="fa fa-reply"></i> Jawab</a>
-                                {{-- <a href="{{url('/komen_jawab/'. $data_tanya->id)}}"
-                                    class="btn btn-success mt-3 mr-2" style="float: right"><i class="fa fa-comment"></i>
-                                    Komentar</a> --}}
+                                
                             </div>
                         </div>
 
-                    </div>
-
-                </div>
             </div>
         </div>
         <div class="card mt-2">
-            <div class="card-header bg-info">
+            <div class="card-header bg-primary text-white">
                 Jawaban Kamu
             </div>
             <div class="card-body">
@@ -159,7 +149,7 @@
                             class="form-control my-editor">{!! old('description', $isi ?? '') !!}</textarea>
                     </div>
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-outline-primary">Jawab</button>
+                        <button type="submit" class="btn btn-outline-success">Jawab</button>
                     </div>
                 </form>
             </div>
