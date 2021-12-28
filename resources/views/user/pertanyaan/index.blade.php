@@ -130,17 +130,17 @@
             </div>
         </div>
     </div>
-</div>
 
-
-<div class="col-md-2 mb-2">
-    <div class="card main">
-        <div class="card-body">
-            @include('layouts.partials.rightbar')
+    <div class="col-md-2 mb-2">
+            <div class="card main">
+                <div class="card-body">
+                    @include('layouts.partials.rightbar')
+                </div>
+            </div>
         </div>
-    </div>
 </div>
 
-</div>
+
+
 
 @endsection
