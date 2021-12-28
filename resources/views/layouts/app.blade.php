@@ -56,16 +56,17 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="{{url('/user/pertanyaan/buat')}}">Buat
-                                    Pertanyaan</a>
-                                <a class="dropdown-item" href="{{url('/pertanyaan/'. Auth::id())}}">Pertanyaan
+                                    Topik</a>
+                                <a class="dropdown-item" href="{{url('/pertanyaan/'. Auth::id())}}">Topik
                                     Saya</a>
-                                <a class="dropdown-item" href="{{url('/jawaban/'. Auth::id())}}">Jawaban
+                                <a class="dropdown-item" href="{{url('/jawaban/'. Auth::id())}}">Respon
                                     Saya</a>
                             </div>
                         </li>
                     </ul>
 
-                    <form class="form-inline mb-0 mx-0 mx-md-2 d-flex flex-row w-100" method="post" action="{{url('/search')}}">
+                    <form class="form-inline mb-0 mx-0 mx-md-2 d-flex flex-row w-100" method="post"
+                        action="{{url('/search')}}">
                         @csrf
                         <input class="form-control mr-sm-2 flex-fill" type="search" placeholder="Cari Topik"
                             aria-label="Search" name="keyword">
