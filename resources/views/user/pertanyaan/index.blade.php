@@ -103,6 +103,7 @@
                                 <span class="badge badge-pill badge-primary">
                                     Updated : {{$item->updated_at->diffForHumans()}}
                                 </span>
+                                <hr>
                                 <p p class="card-text">{!!$item->isi!!}</p>
                                 <div class="tag">
                                     <?php
