@@ -66,14 +66,15 @@
                                             <div class="col-12 mt-3">
                                                 <a href="#" class="btn btn-primary">
                                                     <?php
-                                                        $up_vote = DB::table('vote_pertanyaan')->where(['pertanyaan_id'=>$item->id, 'up_down'=>true])
-                                                                ->count();
-                                                        $down_vote = DB::table('vote_pertanyaan')->where(['pertanyaan_id'=>$item->id, 'up_down'=>false])
-                                                                ->count();
-                                                                
-                                                        echo $up_vote - $down_vote;
+                                                                    
+                                                                    $up_vote = DB::table('vote_pertanyaan')->where(['pertanyaan_id'=>$item->id, 'up_down'=>true])
+                                                                            ->count();
+                                                                    $down_vote = DB::table('vote_pertanyaan')->where(['pertanyaan_id'=>$item->id, 'up_down'=>false])
+                                                                            ->count();
+                                                                            
+                                                                    echo $up_vote - $down_vote;
 
-                                                    ?>
+                                                                ?>
                                                 </a>
                                             </div>
 
@@ -117,14 +118,14 @@
 
                         </div>
                     </div>
-                    <<<<<<< Updated upstream </div>
-                        @endforeach
-                        @endif
-
                 </div>
+                @endforeach
+                @endif
+
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <div class="col-md-2 mb-2">
@@ -135,21 +136,6 @@
     </div>
 </div>
 
-=======
-@endforeach
-@endif
-</div>
-</div>
-</div>
-
-<div class="col-md-2 mb-2">
-    <div class="card main">
-        <div class="card-body card-top-left">
-            @include('layouts.partials.rightbar')
-        </div>
-    </div>
-</div>
->>>>>>> Stashed changes
 </div>
 
 @endsection
