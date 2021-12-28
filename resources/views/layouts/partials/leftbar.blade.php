@@ -4,6 +4,8 @@
 
     $curl = curl_init();
 
+    // https://github.com/lukePeavey/quotable#get-random-quote
+
     curl_setopt_array($curl, array(
         CURLOPT_URL => "https://api.quotable.io/random?tags=technology",
         CURLOPT_RETURNTRANSFER => true,

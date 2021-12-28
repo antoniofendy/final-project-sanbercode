@@ -13,9 +13,9 @@
 @extends('layouts.app')
 
 <style>
-    .card.main {
+    /* .card.main {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
+    } */
 
     .pagination {
         margin: 0 auto;
@@ -98,7 +98,7 @@
                                 <span class="badge badge-pill badge-primary">
                                     Updated : {{$item->updated_at->diffForHumans()}}
                                 </span>
-                                <hr> 
+                                <hr>
                                 <p p class="card-text">{!!$item->isi!!}</p>
                                 <div class="tag">
                                     <?php
