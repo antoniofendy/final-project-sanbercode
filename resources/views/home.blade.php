@@ -19,7 +19,6 @@
 
     .pagination {
         margin: 0 auto;
-
     }
 </style>
 
@@ -41,7 +40,6 @@
                     {{ session('status') }}
                 </div>
                 @endif --}}
-
                 @foreach ($data_tanya as $item)
                 <div class="card mb-2">
                     <?php
