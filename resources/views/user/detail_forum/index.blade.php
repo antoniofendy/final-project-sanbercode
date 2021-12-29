@@ -47,7 +47,7 @@
 </style>
 
 @section('content')
-<div class="row p-2">
+<div class="row p-2 m-0">
 
     <div class="col-md-2 mb-2">
         @include('layouts.partials.leftbar')
@@ -66,7 +66,7 @@
                 <!-- BAGIAN PERTANYAAN -->
                 <div class="card mb-2">
                     <div class="card-header bg-primary text-white">
-                        <p style="display: inline-block;">Topik dari: {{$data_user->name}}</p>
+                        <p class="mb-0 d-inline-block">Topik dari: {{$data_user->name}}</p>
                         @if ($data_tanya->user_id == Auth::id())
                         <a href="{{url('/pertanyaan/'. $data_tanya->id. '/hapus')}}"
                             style="float: right; display:inline; color:white;"><i class="fa fa-trash"
@@ -114,10 +114,10 @@
                             <div class="col-md-10 col-sm-12">
                                 <h5 class="card-title" style="font-weight: bold">{{$data_tanya->judul}}</h5>
                                 <span class="badge badge-pill badge-primary">
-                                    Created : {{$data_tanya->created_at->diffForHumans()}}
+                                    Created: {{$data_tanya->created_at->diffForHumans()}}
                                 </span>
                                 <span class="badge badge-pill badge-primary">
-                                    Updated : {{$data_tanya->updated_at->diffForHumans()}}
+                                    Updated: {{$data_tanya->updated_at->diffForHumans()}}
                                 </span>
                                 <hr>
                                 <p p class="card-text">{!!$data_tanya->isi!!}</p>
@@ -192,7 +192,7 @@
 
                 <div class="card mb-2">
                     <div class="card-header bg-primary text-white">
-                        <p style="display: inline-block;" class="">Jawaban dari: {{$user->name}}</p>
+                        <p class="d-inline-block mb-0">Jawaban dari: {{$user->name}}</p>
                         @if ($item->user_id == Auth::id())
                         <a href="{{url('/hapus-jawaban/'. $item->id)}}"
                             style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-trash"

@@ -44,7 +44,7 @@
 </style>
 
 @section('content')
-<div class="row p-2">
+<div class="row p-2 m-0">
 
     <div class="col-md-2 mb-2">
         @include('layouts.partials.leftbar')
@@ -102,10 +102,10 @@
                                     <div class="col-md-10 col-sm-12">
                                         <h5 class="card-title" style="font-weight: bold">{{$data_tanya->judul}}</h5>
                                         <span class="badge badge-pill badge-primary">
-                                            Created : {{$data_tanya->created_at->diffForHumans()}}
+                                            Created: {{$data_tanya->created_at->diffForHumans()}}
                                         </span>
                                         <span class="badge badge-pill badge-primary">
-                                            Updated : {{$data_tanya->created_at->diffForHumans()}}
+                                            Updated: {{$data_tanya->created_at->diffForHumans()}}
                                         </span>
                                         <p class="card-text">{!!$data_tanya->isi!!}</p>
                                         <div class="tag">

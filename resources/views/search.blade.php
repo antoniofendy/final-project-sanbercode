@@ -24,7 +24,7 @@
 </style>
 
 @section('content')
-<div class="row p-2">
+<div class="row p-2 m-0">
 
     <div class="col-md-2 mb-2">
         @include('layouts.partials.leftbar')
@@ -86,10 +86,10 @@
                                 <div class="col-md-10 col-sm-12">
                                     <h5 class="card-title" style="font-weight: bold">{{$item->judul}}</h5>
                                     <span class="badge badge-pill badge-primary">
-                                        Created : {{$item->created_at->diffForHumans()}}
+                                        Created: {{$item->created_at->diffForHumans()}}
                                     </span>
                                     <span class="badge badge-pill badge-primary">
-                                        Updated : {{$item->updated_at->diffForHumans()}}
+                                        Updated: {{$item->updated_at->diffForHumans()}}
                                     </span>
                                     <hr>
                                     <p p class="card-text">{!!$item->isi!!}</p>

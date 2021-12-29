@@ -44,7 +44,7 @@
 </style>
 
 @section('content')
-<div class="row p-2">
+<div class="row p-2 m-0">
 
     <div class="col-md-2 mb-2">
         @include('layouts.partials.leftbar')
@@ -53,47 +53,40 @@
     <div class="col-md-8 mb-2">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="card main">
-                    <div class="card-header"></div>
 
-                    <div class="card-body">
-                        {{-- @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                        @endif --}}
-                        <div class="card mb-2">
-                            <div class=" card-header bg-primary text-white">
-                                Dari: {{$data_user->name}}
-                            </div>
-                            <div class="card-body bg-secondary">
-                                <div class="row">
-                                    <div class="col-md-10 col-sm-12">
-                                        <h5 class="card-title" style="font-weight: bold">{{$data_tanya->judul}}</h5>
+                {{-- @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+                @endif --}}
+                <div class="card mb-2">
+                    <div class=" card-header bg-primary text-white">
+                        Dari: {{$data_user->name}}
+                    </div>
+                    <div class="card-body bg-secondary">
+                        <div class="row">
+                            <div class="col-md-10 col-sm-12">
+                                <h5 class="card-title" style="font-weight: bold">{{$data_tanya->judul}}</h5>
 
-                                        <p p class="card-text">{!!$data_tanya->isi!!}</p>
-                                        <div class="tag">
-                                            <?php
-                                                
-                                                    $tag = Pertanyaan_Tag::where('pertanyaan_id', $data_tanya->id)
-                                                                            ->get();
-                                                                            
-                                                ?>
-                                            @foreach ($tag as $tag_id)
-                                            <?php
-                                                    $tag_name = Tag::find($tag_id->tag_id);
-                                            ?>
-                                            <a href="{{url('/search/'.trim($tag_name->nama_tag))}}"
-                                                class="btn btn-info">{{$tag_name->nama_tag}}</a>
-                                            @endforeach
-                                        </div>
-                                    </div>
+                                <p p class="card-text">{!!$data_tanya->isi!!}</p>
+                                <div class="tag">
+                                    <?php
+                                        
+                                            $tag = Pertanyaan_Tag::where('pertanyaan_id', $data_tanya->id)
+                                                                    ->get();
+                                                                    
+                                        ?>
+                                    @foreach ($tag as $tag_id)
+                                    <?php
+                                            $tag_name = Tag::find($tag_id->tag_id);
+                                    ?>
+                                    <a href="{{url('/search/'.trim($tag_name->nama_tag))}}"
+                                        class="btn btn-info">{{$tag_name->nama_tag}}</a>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>

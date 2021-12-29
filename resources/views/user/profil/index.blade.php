@@ -24,7 +24,7 @@
 </style>
 
 @section('content')
-<div class="row p-2">
+<div class="row p-2 m-0">
 
     <div class="col-md-2 mb-2">
         @include('layouts.partials.leftbar')

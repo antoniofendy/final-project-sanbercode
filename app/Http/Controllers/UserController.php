@@ -170,7 +170,7 @@ class UserController extends Controller
 
         }
         else{
-            Alert::error('Gagal', 'Tidak dapat vote topik sendiri.');
+            Alert::error('Gagal', 'Tidak dapat mem-vote topik sendiri.');
         }
         return redirect('/pertanyaan/'. $pertanyaan_id . '/detail');
     }
@@ -255,7 +255,7 @@ class UserController extends Controller
 
         }
         else{
-            Alert::error('Gagal', 'Tidak dapat vote topik sendiri.');
+            Alert::error('Gagal', 'Tidak dapat mem-vote topik sendiri.');
         }
         $jwb = Jawaban::find($jawaban_id);
         return redirect('/pertanyaan/' . $jwb->pertanyaan_id . "/detail");
