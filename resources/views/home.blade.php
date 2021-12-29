@@ -49,7 +49,7 @@
                                 $nama_user = $nama->name;
                             ?>
                     <div class="card-header bg-primary text-white">
-                        Dari : {{$nama_user}}
+                        Dari: {{$nama_user}}
                     </div>
 
                     <div class="card-body bg-secondary">

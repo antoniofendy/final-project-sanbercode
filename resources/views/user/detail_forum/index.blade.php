@@ -161,7 +161,7 @@
 
                 <div class="card mb-2 ml-5">
                     <div class="card-header bg-primary text-white">
-                        Komentar dari : {{$user->name}}
+                        Komentar dari: {{$user->name}}
                     </div>
                     <div class="card-body bg-secondary">
                         <div class="row">
@@ -192,7 +192,7 @@
 
                 <div class="card mb-2">
                     <div class="card-header bg-primary text-white">
-                        <p style="display: inline-block;" class="">Jawaban dari : {{$user->name}}</p>
+                        <p style="display: inline-block;" class="">Jawaban dari: {{$user->name}}</p>
                         @if ($item->user_id == Auth::id())
                         <a href="{{url('/hapus-jawaban/'. $item->id)}}"
                             style="float: right; display:inline; color:#f4f6ff;"><i class="fa fa-trash"
@@ -282,7 +282,7 @@
                                     ?>
                 <div class="card mb-2 ml-5">
                     <div class="card-header bg-success">
-                        Komentar Dari : {{$user->name}}
+                        Komentar dari: {{$user->name}}
                     </div>
                     <div class="card-body">
                         <div class="row">

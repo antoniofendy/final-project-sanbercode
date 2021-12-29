@@ -64,7 +64,7 @@
                         @endif --}}
                         <div class="card mb-2">
                             <div class=" card-header bg-primary text-white">
-                                Dari : {{$data_user->name}}
+                                Dari: {{$data_user->name}}
                             </div>
                             <div class="card-body bg-secondary">
                                 <div class="row">
