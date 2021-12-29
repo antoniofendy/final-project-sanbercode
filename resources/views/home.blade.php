@@ -19,7 +19,6 @@
 
     .pagination {
         margin: 0 auto;
-
     }
 </style>
 
@@ -41,7 +40,6 @@
                     {{ session('status') }}
                 </div>
                 @endif --}}
-
                 @foreach ($data_tanya as $item)
                 <div class="card mb-2">
                     <?php
@@ -49,7 +47,7 @@
                                 $nama_user = $nama->name;
                             ?>
                     <div class="card-header bg-primary text-white">
-                        Dari: {{$nama_user}}
+                        Dari : {{$nama_user}} | Reputasi : {{$nama->reputasi}}
                     </div>
 
                     <div class="card-body bg-secondary">
