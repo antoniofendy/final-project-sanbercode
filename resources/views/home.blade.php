@@ -48,7 +48,7 @@
                             ?>
                     <div class="card-header bg-primary text-white d-inline">
                         Dari: {{$nama_user}}
-                        <span class="badge bg-white text-primary">{{$nama->reputasi}}</span>
+                        <span class="badge bg-white text-primary">Reputasi: {{$nama->reputasi}}</span>
                     </div>
 
                     <div class="card-body bg-secondary">
