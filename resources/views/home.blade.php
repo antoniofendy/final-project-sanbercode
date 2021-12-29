@@ -46,8 +46,9 @@
                                 $nama = User::find($item->user_id);
                                 $nama_user = $nama->name;
                             ?>
-                    <div class="card-header bg-primary text-white">
-                        Dari : {{$nama_user}} | Reputasi : {{$nama->reputasi}}
+                    <div class="card-header bg-primary text-white d-inline">
+                        Dari: {{$nama_user}}
+                        <span class="badge bg-white text-primary">{{$nama->reputasi}}</span>
                     </div>
 
                     <div class="card-body bg-secondary">
