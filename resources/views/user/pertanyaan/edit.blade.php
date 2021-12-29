@@ -24,7 +24,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card main">
-                        <div class="card-header bg-primary text-white">Edit Pertanyaan</div>
+                        <div class="card-header bg-primary text-white">Edit Topik</div>
                         
                         <div class="card-body">
                             {{-- @if (session('status'))
@@ -38,11 +38,11 @@
                                 <input type="hidden" name="pertanyaan_id" value="{{$data_tanya->id}}">
                                 <input type="hidden" name="user_id" value="{{Auth::id()}}">
                                 <div class="form-group">
-                                    <label for="judul"><b>Judul Pertanyaan</b></label>
+                                    <label for="judul"><b>Judul Topik</b></label>
                                     <input type="text" name="judul" value="{{$data_tanya->judul}}" class="form-control" placeholder="ex: Cara menggunakan Laravel" size="20" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="isi"><b>Isi Pertanyaan</b></label>
+                                    <label for="isi"><b>Isi Topik</b></label>
                                     <textarea name="isi" class="form-control my-editor">{!! old('isi', $isi ?? '') !!}{!!$data_tanya->isi!!}</textarea>
                                 </div>
                                 <div class="form-group">
@@ -50,7 +50,7 @@
                                     <input type="text" name="tag" value="{{$data_tag}}" class="form-control" placeholder="ex: javascript,laravel,..." size="20" required>
                                 </div>
                                 <div class="form-group text-center">
-                                    <button type="submit" class="btn btn-outline-primary">Edit Pertanyaan</button>
+                                    <button type="submit" class="btn btn-outline-primary">Edit Topik</button>
                                 </div>
                             </form>
                             

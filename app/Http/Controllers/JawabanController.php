@@ -45,7 +45,7 @@ class JawabanController extends Controller
         unset($isi['_token']);
         $jawab = Jawaban::create($isi);
 
-        Alert::info('Berhasil', 'Jawaban anda telah terkirim');
+        Alert::info('Berhasil', 'Jawaban Anda telah terkirim');
 
 
         return redirect('/pertanyaan/'. $isi['pertanyaan_id'] . '/detail');

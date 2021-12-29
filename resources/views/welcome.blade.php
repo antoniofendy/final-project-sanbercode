@@ -108,7 +108,7 @@
                     <h2 class="text-white mt-0">Kami ingin membantu memenuhi kebutuhan Anda!</h2>
                     <hr class="divider light my-4" />
                     <p class="text-white-50 mb-4">Daftarkan diri Anda dan bergabung dengan forum untuk berdiskusi
-                        seputar dunia pemrograman bersama dengan lebih dari 100000 programmer lainnya.</p>
+                        seputar dunia pemrograman bersama dengan lebih dari 100.000 <i>programmer</i> lainnya.</p>
                     <a class="btn btn-light btn-xl js-scroll-trigger" href="{{ route('register') }}">Daftar</a>
                 </div>
             </div>
@@ -138,7 +138,7 @@
                     <div class="mt-5">
                         <i class="fas fa-4x fa-globe text-primary mb-4"></i>
                         <h3 class="h4 mb-2">Peluang Komunitas</h3>
-                        <p class="text-muted mb-0">Memberikan anda komunitas besar dalam dunia programming</p>
+                        <p class="text-muted mb-0">Memberikan Anda komunitas besar dalam dunia <i>programming</i></p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">

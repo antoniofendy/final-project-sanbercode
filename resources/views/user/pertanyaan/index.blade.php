@@ -33,7 +33,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
 
-                <div class="h3 mb-3">Pertanyaan Anda</div>
+                <div class="h3 mb-3">Topik Anda</div>
 
                 {{-- @if (session('status'))
                 <div class="alert alert-success" role="alert">
@@ -42,7 +42,7 @@
                 @endif --}}
 
                 @if (empty(end($data_tanya)))
-                <p class="card-text">Maaf, anda belum memiliki pertanyaan</p>
+                <p class="card-text">Maaf, Anda belum memulai topik.</p>
                 @else
                 @foreach ($data_tanya as $item)
                 <div class="card mb-2">

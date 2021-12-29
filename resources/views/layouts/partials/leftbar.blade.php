@@ -34,9 +34,9 @@
 
 <div class="card main">
     <div class="card-body">
-        <h5 class="card-title"><b>Quotes untuk kamu</b></h5>
+        <h5 class="card-title"><b><i>Quotes</i> untuk kamu</b></h5>
         <p class="card-text" style="font-family: 'Merienda One', cursive;">
-            {{$response->content}} - <b>{{$response->author}}</b>
+            {{$response->content}} <br>-<b>{{$response->author}}</b>
         </p>
     </div>
 </div>

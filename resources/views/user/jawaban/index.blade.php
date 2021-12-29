@@ -39,7 +39,7 @@
                         @endif --}}
                         
                         @if (empty(end($data_jawab)))
-                            <p class="card-text">Maaf, anda belum memiliki jawaban terhadap pertanyaan lain</p>
+                            <p class="card-text">Maaf, Anda belum pernah memberikan jawaban.</p>
                         @else
                             @foreach ($data_jawab as $item)
                             <div class="card mb-2">

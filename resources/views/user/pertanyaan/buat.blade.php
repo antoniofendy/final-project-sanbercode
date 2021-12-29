@@ -24,7 +24,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card main">
-                    <div class="card-header bg-primary text-white">Berikan Pertanyaan</div>
+                    <div class="card-header bg-primary text-white">Buat Topik</div>
 
                     <div class="card-body">
                         {{-- @if (session('status'))
@@ -38,12 +38,12 @@
                             <input type="hidden" name="updated_at" value="{{$current_date_time}}">
                             <input type="hidden" name="user_id" value="{{Auth::id()}}">
                             <div class="form-group">
-                                <label for="judul"><b>Judul Pertanyaan</b></label>
+                                <label for="judul"><b>Judul Topik</b></label>
                                 <input type="text" name="judul" class="form-control"
                                     placeholder="ex: Cara menggunakan Laravel" size="20" required>
                             </div>
                             <div class="form-group">
-                                <label for="isi"><b>Isi Pertanyaan</b></label>
+                                <label for="isi"><b>Isi Topik</b></label>
                                 <textarea name="isi"
                                     class="form-control my-editor">{!! old('isi', $isi ?? '') !!}</textarea>
                             </div>

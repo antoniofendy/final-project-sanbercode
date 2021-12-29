@@ -42,7 +42,7 @@ class UserController extends Controller
                 "alamat" => $request->alamat
             ]);
 
-            Alert::success('Berhasil', 'Berhasil memperbarui data profil');
+            Alert::success('Berhasil', 'Berhasil memperbarui data profil.');
             $user = User::find(Auth::id());
             return redirect('/profil');
         }
@@ -62,18 +62,18 @@ class UserController extends Controller
                         "alamat" => $request->alamat
                     ]);
 
-                    Alert::success('Berhasil', 'Berhasil memperbarui data profil');
+                    Alert::success('Berhasil', 'Berhasil memperbarui data profil.');
                     $user = User::find(Auth::id());
                     return redirect('/profil');
                 }
                 // JIKA PASSWORD BARU DAN PASSWORD KONFIRMASI BERBEDA
                 else
                 {
-                    Alert::error('Gagal', 'Password baru dengan password konfirmasi berbeda');
+                    Alert::error('Gagal', 'Password baru dengan password konfirmasi berbeda.');
                     return redirect('/profil');
                 }
             }
-            Alert::error('Gagal', 'Password lama tidak sesuai');
+            Alert::error('Gagal', 'Password lama tidak sesuai.');
             return redirect('/profil');
         }
     }
@@ -163,14 +163,14 @@ class UserController extends Controller
                     }
                 }
                 else{
-                    Alert::error('Gagal', 'Minimal point reputasi vote down adalah 15');
+                    Alert::error('Gagal', 'Minimal point reputasi downvote adalah 15.');
                 }
             }
 
 
         }
         else{
-            Alert::error('Gagal', 'Tidak boleh vote pada pertanyaan sendiri');
+            Alert::error('Gagal', 'Tidak dapat vote topik sendiri.');
         }
         return redirect('/pertanyaan/'. $pertanyaan_id . '/detail');
     }
@@ -249,13 +249,13 @@ class UserController extends Controller
                     }
                 }
                 else {
-                    Alert::error('Gagal', 'Minimal point reputasi vote down adalah 15');
+                    Alert::error('Gagal', 'Minimal point reputasi downvote adalah 15.');
                 }
             }
 
         }
         else{
-            Alert::error('Gagal', 'Tidak boleh vote pada jawaban sendiri');
+            Alert::error('Gagal', 'Tidak dapat vote topik sendiri.');
         }
         $jwb = Jawaban::find($jawaban_id);
         return redirect('/pertanyaan/' . $jwb->pertanyaan_id . "/detail");

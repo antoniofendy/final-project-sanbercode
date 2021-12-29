@@ -66,7 +66,7 @@
                 <!-- BAGIAN PERTANYAAN -->
                 <div class="card mb-2">
                     <div class="card-header bg-primary text-white">
-                        <p style="display: inline-block;">Pertanyaan dari : {{$data_user->name}}</p>
+                        <p style="display: inline-block;">Topik dari: {{$data_user->name}}</p>
                         @if ($data_tanya->user_id == Auth::id())
                         <a href="{{url('/pertanyaan/'. $data_tanya->id. '/hapus')}}"
                             style="float: right; display:inline; color:white;"><i class="fa fa-trash"
